@@ -153,7 +153,7 @@ if __name__ == "__main__":
         #addingNewStock.initializeDb()
         #addingNewStock.scrapeSpotData()
         #addingNewStock.createCSVFile()
-        #addingNewStock.createIndicators()
+        addingNewStock.createIndicators()
         addingNewStock.testIndicator()
 
     # Checking for common signal in ADX & MACD

@@ -46,7 +46,7 @@ MAIL_SENDER =                   "anursin@adobe.com"
 
 
 # Not needed for automatic crawling
-stockName = "EURUSD"      # Option symbol of nifty is "NIFTY", "SBIN", "ICICIBANK", "HDFC", "INFY", "TATASTEEL"
+stockName = "EURJPY"      # Option symbol of nifty is "NIFTY", "SBIN", "ICICIBANK", "HDFC", "INFY", "TATASTEEL"
                             #  "CIPLA", "KOTAKBANK", "HDFCBANK", "AXISBANK", 
 stockList = ["SBIN", "ICICIBANK", "HDFC", "KOTAKBANK", "HDFCBANK", "AXISBANK", "TATASTEEL", "CIPLA", "INFY", "BPCL", "COALINDIA", 
              "NTPC", "POWERGRID", "ONGC", "BAJFINANCE", "INFRATEL", "JSWSTEEL", "TATAMOTORS", "HEROMOTOCO", "SUNPHARMA", "DRREDDY",
@@ -70,8 +70,8 @@ startIndex = 30             # How many rows we need to scrape from csv file from
 endIndex = 7                
 timeIntervalBetweenScrape = 60      #in seconds
 thresholdPassFailPer = 75
-TARGET_PIP =            100
-STOPLOSS_PIP =          200
+TARGET_PIP =            25
+STOPLOSS_PIP =          100
 BROKERAGE_PIP =         2
 
 
