@@ -1,0 +1,106 @@
+'''This spider is used to crawl and save spot 
+    value of indices like NIFTY 50, BANKNIFTY,    
+    etc. You need to provide SYMBOL, STARTDATE,
+    & ENDDATE as argument to this spider.
+'''
+
+import scrapy, logging, stock_scraper
+from scrapy.loader import ItemLoader
+from scrapy.selector import Selector
+from scrapy.loader.processors import Join, MapCompose
+from stock_scraper.items import StockSpotItem
+
+# start logger
+log = logging.getLogger(__name__)
+
+class SpotValueSpider(scrapy.Spider):
+    
+    name = 'SpotValueSpider'
+    allowed_domains = ['www.nseindia.com']
+    
+    def __init__(self, symbol, startDate, endDate, * args, **kwargs):
+        super(SpotValueSpider, self).__init__(*args, **kwargs)
+        self.symbol = symbol
+        self.startDate = startDate
+        self.endDate = endDate
+        log.debug("Crawling for %s from %s to %s " % (self.symbol, self.startDate, self.endDate))
+        self.start_urls = ["http://www.nseindia.com/products/dynaContent/equities/indices/historicalindices.jsp?indexType={symbol}&fromDate={startDate}&toDate={endDate}".format(symbol=self.symbol, startDate=self.startDate, endDate=self.endDate),
+                     ]
+    
+    # used to save respective xpath value with their item,
+    # later we can iterate through it.
+    item_fields = {  
+                'Date':'./td[1]//text()',
+                'Open':'./td[2]//text()',
+                'High':'./td[3]//text()',
+                'Low':'./td[4]//text()',
+                'Close':'./td[5]//text()',
+                'SharesTraded':'./td[6]//text()',
+                'Turnover':'./td[7]//text()'
+                }
+    
+    def parse(self, response):
+        
+        # checking for response, wheather it contains records or not
+        if (response.xpath("//tr[3]//text()").extract()[0].find("No Records") > 0):
+            log.crtical("No Records found from date {startDate} to date {endDate}".format(startDate=self.startDate, endDate=self.endDate))
+            
+        else:   
+            # Storing all selector except top 3(which contains waste data)
+            res = response.xpath('//tr[position()>3]')
+            # val will iterate from 0 to (last -1), because last res item is waste
+            for val in res[0:(len(res) - 1)]:
+                loader = ItemLoader(StockSpotItem(), val)
+                loader.default_input_processor = MapCompose(unicode.strip)
+                loader.default_output_processor = Join()
+                
+                for item, xpath in self.item_fields.iteritems():
+                    loader.add_xpath(item, xpath)
+                yield loader.load_item()
+                
+                
+***********************************
+autospotvalue file
+
+'''This module will help in automating process of 
+    execution of spider and will set appropriate setting.
+    You can set User Agent to random value for every 
+    time spider will crawl, this will reduce chance of 
+    getting banned.
+'''
+
+import scrapy, stock_scraper, logging
+from stock_scraper.spiders import SpotValueSpider
+from scrapy.crawler import CrawlerProcess
+from scrapy.utils.project import get_project_settings
+
+# start logger
+log = logging.getLogger(__name__)
+
+# get_project_stting() will return project setting,which will be set as default setting in crawler
+process = CrawlerProcess(get_project_settings())
+
+#this list will store day range with month range in the form of [[[start day,end day],[start month,end month]]]
+dayRange=[[['01','31'],['01','03']],[['01','30'],['04','06']],[['01','30'],['07','09']],[['01','31'],['10','12']]]
+year=2000  #This will be start year
+currentYear=2014
+symbol='NIFTY 50'
+
+while year<currentYear:
+    for dayIter in dayRange:
+        startDate=dayIter[0][0]+'-'+dayIter[1][0]+'-'+str(year)
+        endDate=dayIter[0][1]+'-'+dayIter[1][1]+'-'+str(year)
+
+        # crawl will take Spider name with its *args
+        process.crawl(SpotValueSpider, symbol=symbol, startDate=startDate, endDate=endDate)
+        # Everything is set to go and crawl.
+        process.start()
+    year+=1
+    
+
+
+
+
+
+
+

@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <Name>WebFramework</Name>
+    <RootNamespace>WebFramework</RootNamespace>
+    <InterpreterId>MSBuild|{864f6f30-7ade-4722-a735-47471aeadfdd}|$(MSBuildProjectFullPath)</InterpreterId>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>5f981d28-9bf1-4dd5-b026-65f03d3cfd81</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <ProjectTypeGuids>{5F0BE9CA-D677-4A4D-8806-6076C0FAAD37};{349c5851-65df-11da-9384-00065b846f21};{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <StartupFile>manage.py</StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <LaunchProvider>Django launcher</LaunchProvider>
+    <OutputPath>.</OutputPath>
+    <WebBrowserUrl>http://localhost</WebBrowserUrl>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="app\forms.py" />
+    <Compile Include="app\models.py" />
+    <Compile Include="app\tests.py" />
+    <Compile Include="app\views.py" />
+    <Compile Include="app\__init__.py" />
+    <Compile Include="app\migrations\__init__.py" />
+    <Compile Include="fno\admin.py" />
+    <Compile Include="fno\apps.py" />
+    <Compile Include="fno\forms.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="fno\migrations\__init__.py" />
+    <Compile Include="fno\models.py" />
+    <Compile Include="fno\tests.py" />
+    <Compile Include="fno\urls.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="fno\view.py" />
+    <Compile Include="fno\views\IndexView.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="fno\views\StockOIView.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="fno\views\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="fno\__init__.py" />
+    <Compile Include="manage.py" />
+    <Compile Include="option\admin.py" />
+    <Compile Include="option\apps.py" />
+    <Compile Include="option\forms.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="option\migrations\__init__.py" />
+    <Compile Include="option\models.py" />
+    <Compile Include="option\tests.py" />
+    <Compile Include="option\urls.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="option\views.py" />
+    <Compile Include="option\__init__.py" />
+    <Compile Include="Utility\DBRelated.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Utility\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WebFramework\utility.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WebFramework\__init__.py" />
+    <Compile Include="WebFramework\settings.py" />
+    <Compile Include="WebFramework\urls.py" />
+    <Compile Include="WebFramework\wsgi.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="app\" />
+    <Folder Include="app\migrations\" />
+    <Folder Include="app\static\" />
+    <Folder Include="app\static\app\" />
+    <Folder Include="app\static\app\content\" />
+    <Folder Include="app\static\app\fonts\" />
+    <Folder Include="app\static\app\scripts\" />
+    <Folder Include="app\templates\" />
+    <Folder Include="app\templates\app\" />
+    <Folder Include="fno\" />
+    <Folder Include="fno\migrations\" />
+    <Folder Include="fno\templates\" />
+    <Folder Include="fno\templates\fno\" />
+    <Folder Include="fno\views\" />
+    <Folder Include="option\" />
+    <Folder Include="option\migrations\" />
+    <Folder Include="option\templates\" />
+    <Folder Include="option\templates\option\" />
+    <Folder Include="Utility\" />
+    <Folder Include="WebFramework\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fno\templates\fno\index.html" />
+    <Content Include="fno\templates\fno\oi.html" />
+    <Content Include="option\templates\option\ar4.html" />
+    <Content Include="option\templates\option\Image_color_editing.html" />
+    <Content Include="option\templates\option\VRDemo.html" />
+    <Content Include="option\templates\option\ar_index.html" />
+    <Content Include="option\templates\option\argonar.html" />
+    <Content Include="option\templates\option\ar_video_player.html" />
+    <Content Include="option\templates\option\index.html" />
+    <Content Include="option\templates\option\oi.html" />
+    <Content Include="option\templates\option\ar3.html" />
+    <Content Include="option\templates\option\pktrial.html" />
+    <Content Include="requirements.txt" />
+    <Content Include="db.sqlite3" />
+    <Content Include="app\static\app\content\bootstrap.css" />
+    <Content Include="app\static\app\content\bootstrap.min.css" />
+    <Content Include="app\static\app\content\site.css" />
+    <Content Include="app\static\app\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="app\static\app\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="app\static\app\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="app\static\app\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="app\static\app\scripts\bootstrap.js" />
+    <Content Include="app\static\app\scripts\bootstrap.min.js" />
+    <Content Include="app\static\app\scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="app\static\app\scripts\jquery-1.10.2.js" />
+    <Content Include="app\static\app\scripts\jquery-1.10.2.min.js" />
+    <Content Include="app\static\app\scripts\jquery-1.10.2.min.map" />
+    <Content Include="app\static\app\scripts\jquery.validate-vsdoc.js" />
+    <Content Include="app\static\app\scripts\jquery.validate.js" />
+    <Content Include="app\static\app\scripts\jquery.validate.min.js" />
+    <Content Include="app\static\app\scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="app\static\app\scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="app\static\app\scripts\modernizr-2.6.2.js" />
+    <Content Include="app\static\app\scripts\respond.js" />
+    <Content Include="app\static\app\scripts\respond.min.js" />
+    <Content Include="app\static\app\scripts\_references.js" />
+    <Content Include="app\templates\app\about.html" />
+    <Content Include="app\templates\app\contact.html" />
+    <Content Include="app\templates\app\index.html" />
+    <Content Include="app\templates\app\layout.html" />
+    <Content Include="app\templates\app\login.html" />
+    <Content Include="app\templates\app\loginpartial.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="readme.mht">
+      <SubType>WebBrowser</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Interpreter Include="env\">
+      <Id>{864f6f30-7ade-4722-a735-47471aeadfdd}</Id>
+      <Version>2.7</Version>
+      <Description>env (Python 64-bit 2.7)</Description>
+      <InterpreterPath>Scripts\python.exe</InterpreterPath>
+      <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
+      <LibraryPath>Lib\</LibraryPath>
+      <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
+      <Architecture>Amd64</Architecture>
+    </Interpreter>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.Django.targets" />
+  <!-- Specify pre- and post-build commands in the BeforeBuild and 
+       AfterBuild targets below. -->
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <AutoAssignPort>True</AutoAssignPort>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>False</EnableENC>
+          <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
+</Project>

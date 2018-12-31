@@ -1,0 +1,317 @@
+﻿<!-- This is working file, don't change it-->
+
+{% load static %}
+<html>
+    <head>
+        <title>AR InDesign Demo</title>
+
+        <script src="{% static "option/js/aframe.min.js" %}"></script>
+        <script src="{% static "option/js/argon.js" %}"></script>
+        <script src="{% static "option/js/argon-aframe.js" %}"></script>
+        <script src="{% static "option/js/CSS3DArgonRenderer.js" %}"></script>
+        <script src="{% static "option/js/CSS3DArgonHUD.js" %}"></script>
+        <script src="{% static "option/js/ArgonSunMoon.js" %}"></script>
+        
+        <script src="{% static "option/js/vibrant.js" %}"></script>
+
+        <script src="{% static "option/js/colorpicker.js" %}"></script>
+        <link rel="stylesheet" href="{% static "option/css/colorpicker.css" %}">
+    </head>
+    <body>
+            <script>
+                var counter = 2;
+                AFRAME.registerComponent('mouse-cursor', {
+                    init: function () {
+                        this.el.addEventListener('mouseenter', MouseDownEH)
+                        
+                    }
+                });
+
+                function MouseDownEH(evt) {
+                    
+                    var imgElement = document.getElementById('imageX');
+                    /*
+                    var img = new Image();
+                    img.src = "/static/option/image_5.png";
+                    */
+
+                    var canvas = document.createElement("canvas");
+                    canvas.width = imgElement.offsetWidth;
+                    canvas.height = imgElement.offsetHeight;
+
+                    var ctx = canvas.getContext("2d");
+                    //ctx.drawImage(img, 0, 0);
+                    ctx.drawImage(imgElement, 0, 0);
+
+                    /*
+                    img.onload = function () {
+                        ctx.drawImage(img, 0, 0);
+                        var imageData = ctx.getImageData(0, 0, 240, 240);
+                      //  readImage(imageData);
+                    };*/
+
+                    var map = ctx.getImageData(0, 0, 240, 240);
+                    var imdata = map.data;
+
+                    var r, g, b, avg;
+                    for (var p = 0, len = imdata.length; p < len; p += 4) {
+
+                        if (imdata[p+2] < 150)
+                            imdata[p+2] += 50;
+                        /*
+                        r = imdata[p]
+                        g = imdata[p + 1];
+                        b = imdata[p + 2];
+
+                       // if (r != 0)
+                         //   console.log(r);
+                        avg = Math.floor((r + g + b) / 3);
+
+                        imdata[p] = imdata[p + 1] = imdata[p + 2] = avg;
+                        */
+                    }
+                    map.data = imdata;
+                    ctx.putImageData(map, 0, 0);
+                    /*
+                    var tintColor = "#550000";
+                    // overlay filled rectangle using lighter composition
+                    ctx.globalCompositeOperation = "lighter";
+                    ctx.globalAlpha = 0.5;
+                    ctx.fillStyle = tintColor;
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    */
+
+                    // replace image source with canvas data
+                    //imgElement.src = canvas.toDataURL();
+
+
+                    var imageId = "image" + counter++;
+                    var newImg = '<image id="' + imageId + '" src="' + canvas.toDataURL() + '" ></image>';
+                    document.querySelector("#image1").insertAdjacentHTML('afterend', newImg);
+
+                    var oldImage = document.querySelectorAll("a-image")
+                    for (var i = 0; i < oldImage.length; i++) {
+                     //   document.querySelector("#arEntity1").removeChild(oldImage[i]);
+                    }
+
+                    var newAFrameImg = '<a-image src= "#' + imageId + '"  ></a-image>';
+                    document.querySelector("#amarker").insertAdjacentHTML('afterend',newAFrameImg);
+                };
+                
+        </script>
+
+        <ar-scene sunmoon arvr light="defaultLightsEnabled: false">
+            <a-assets>
+                <image id="image1" src="{% static "option/test-image.png" %}" ></image>
+            
+            </a-assets>
+
+            <ar-frame id="viewer" visible="true" parent="ar.stageEUS">
+                <a-entity id="arEntity1" position="0 0 -8" cursor="rayOrigin:entity">
+
+                    <!--<a-image src="#image1" mouse-cursor position="2 0 0"></a-image>-->
+                    <a-image src="#image1"></a-image>
+                  <!--  <a-marker type="pattern" patternUrl="{% static "option/pattern-marker.patt" %}"></a-marker> -->
+                    <a-marker id="amarker" preset='hiro'>
+                        <a-box position='0 0.5 0' material='color: red;'></a-box>
+                </a-entity>
+            </ar-frame>
+            
+            <!--
+               <a-entity light="type: ambient; color: #444"></a-entity>
+            <ar-camera>
+                <a-entity id="myCursor" cursor="rayOrigin: mouse" position="0 0 -0.1" geometry="primitive:ring; radiusInner: 0.001; radiusOuter: 0.0015" material="color: #2E3A87; opacity:0.3;"></a-entity>
+            </ar-camera>
+                -->
+
+</ar-scene>
+
+
+
+    <!-- Color picker code-->
+    <div id="container">
+			<div id="picker" class="block">
+				<div class="ui-color-picker" data-topic="picker" data-mode="HSL">
+					<div class="picking-area" style="background-color: rgb(0, 67, 255); visibility:hidden;">
+						<div class="picker" style="left: 23px; top: 108px;visibility:hidden;">
+						</div>
+					</div>
+				    <div class="hue" style="visibility:hidden; width:0 !important; height:0 !important;">
+					    <div class="slider-picker" style="left: 121px;visibility:hidden;">
+					    </div>
+				    </div>
+			    </div>
+            </div>
+    </div>
+
+    <image id="imageX" src="{% static "option/test-image.png" %}"  ></image>
+
+        <script>
+            /*  ************** anursin function ************************ */
+            function MyRGBtoHSL(r, g, b) {
+                var red = r / 255;
+                var green = g / 255;
+                var blue = b / 255;
+
+                var cmax = Math.max(red, green, blue);
+                var cmin = Math.min(red, green, blue);
+                var delta = cmax - cmin;
+                var hue = 0;
+                var saturation = 0;
+                var lightness = (cmax + cmin) / 2;
+                var X = (1 - Math.abs(2 * lightness - 1));
+
+                if (delta) {
+                    if (cmax === red) { hue = ((green - blue) / delta); }
+                    if (cmax === green) { hue = 2 + (blue - red) / delta; }
+                    if (cmax === blue) { hue = 4 + (red - green) / delta; }
+                    if (cmax) saturation = delta / X;
+                }
+
+                hue = 60 * hue | 0;
+                if (hue < 0) hue += 360;
+                saturation = (saturation * 100) | 0;
+                lightness = (lightness * 100) | 0;
+
+                return [hue, saturation, lightness];
+            };
+
+            function MyHueToSliderPosition(hue, width) {
+
+                // anursin assupltion, width is always 1000.
+                var sliderPosition = ((hue * width) / 359);
+                return sliderPosition;
+            };
+
+            function MyHSLtoRGB(h, s, l) {
+                var sat = s / 100;
+                var light = l / 100;
+                var C = sat * (1 - Math.abs(2 * light - 1));
+                var H = h / 60;
+                var X = C * (1 - Math.abs(H % 2 - 1));
+                var m = light - C / 2;
+                var precision = 255;
+
+                C = (C + m) * precision | 0;
+                X = (X + m) * precision | 0;
+                m = m * precision | 0;
+
+                if (H >= 0 && H < 1) { return [C, X, m]; }
+                if (H >= 1 && H < 2) { return [X, C, m]; }
+                if (H >= 2 && H < 3) { return [m, C, X]; }
+                if (H >= 3 && H < 4) { return [m, X, C]; }
+                if (H >= 4 && H < 5) { return [X, m, C]; }
+                if (H >= 5 && H < 6) { return [C, m, X]; }
+            };
+
+            function MyGetHueFromSliderPosition(sliderPosition, width) {
+
+                // anursin assupltion, width is always 1000.
+                var hue = ((sliderPosition * 359) / width) | 0;
+                return hue;
+            };
+
+            function GetCummulativeSliderDiff(width, x) {
+                var imgElement = document.getElementById('imageX');
+                var vibrant = new Vibrant(imgElement);
+                var swatches = vibrant.swatches();
+                var rgb = swatches["Vibrant"].getRgb();
+
+                var hsl = MyRGBtoHSL(rgb[0], rgb[1], rgb[2]);
+                var vibratSliderPosition = MyHueToSliderPosition(hsl[0], width);
+
+                return x - vibratSliderPosition;
+            }
+
+            function GetUpdatedRGB(r, g, b, width, cummulativeSliderDiff) {
+
+                // First get H, S, L for current r,g,b
+                var hsl = MyRGBtoHSL(r, g, b);
+
+                // second get slider position for current r, g, b
+                var sliderPosition = MyHueToSliderPosition(hsl[0], width);
+
+                // third
+                var newSliderPosition = (sliderPosition + cummulativeSliderDiff) % 1000;
+
+                // fourth new hue for new slider position
+                var newHue = MyGetHueFromSliderPosition(newSliderPosition, width);
+
+                // Second get new R, G, B, for new Hue(S & L will be same)
+                return MyHSLtoRGB(newHue, hsl[1], hsl[2]);
+            };
+
+
+            function RedrawImagePallets(width, x) {
+                console.log("In redraw image:", width, x);
+
+                var imgElement = document.getElementById('imageX');
+                var canvas = document.createElement("canvas");
+                canvas.width = imgElement.offsetWidth;
+                canvas.height = imgElement.offsetHeight;
+
+                var ctx = canvas.getContext("2d");
+                ctx.drawImage(imgElement, 0, 0);
+
+                var map = ctx.getImageData(0, 0, imgElement.offsetWidth, imgElement.offsetHeight);
+                var imdata = map.data;
+
+                // Now get dominant color
+
+                // now get hue(slider position) for dominant color
+                var cummulativeSliderDiff = GetCummulativeSliderDiff(width, x);
+
+                var r, g, b, avg;
+                for (var p = 0, len = imdata.length; p < len; p += 4) {
+
+                    r = imdata[p];
+                    g = imdata[p + 1];
+                    b = imdata[p + 2];
+
+                    var updatedRGB = GetUpdatedRGB(r, g, b, width, cummulativeSliderDiff);
+                    if (updatedRGB != undefined) {
+                        imdata[p] = updatedRGB[0];
+                        imdata[p + 1] = updatedRGB[1];
+                        imdata[p + 2] = updatedRGB[2];
+                    }
+                }
+
+                map.data = imdata;
+                ctx.putImageData(map, 0, 0);
+
+                var imageId = "image" + counter++;
+                var newImg = '<image id="' + imageId + '" src="' + canvas.toDataURL() + '" ></image>';
+                document.querySelector("#image1").insertAdjacentHTML('afterend', newImg);
+
+                var oldImage = document.querySelectorAll("a-image")
+                for (var i = 0; i < oldImage.length; i++) {
+                      document.querySelector("#arEntity1").removeChild(oldImage[i]);
+                }
+
+                var newAFrameImg = '<a-image src= "#' + imageId + '"  ></a-image>';
+                document.querySelector("#amarker").insertAdjacentHTML('afterend', newAFrameImg);
+            }
+
+        </script>
+
+    <script>
+        /*
+    var arScene = document.querySelector('ar-scene');
+    var content = document.querySelector('#arEntity1');
+    arScene.addEventListener("referenceframe-statuschanged", function() {
+        var camera = document.querySelector('ar-camera');
+        var vec = camera.object3D.getWorldDirection();
+        vec.multiplyScalar(-10);
+        content.setAttribute("position", {
+            x: vec.x,
+            y: vec.y,
+            z: vec.z
+        });
+    })
+    */
+</script>
+
+
+
+
+</body></html>

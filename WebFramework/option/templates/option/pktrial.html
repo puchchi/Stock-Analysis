@@ -1,0 +1,104 @@
+﻿<html>
+  <head>
+    <title>Pragya Trial</title>
+
+    <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>    
+    <script src="https://unpkg.com/@argonjs/argon@^1.2/dist/argon.js"></script>
+    <script src="https://rawgit.com/argonjs/argon-aframe/master/dist/argon-aframe.js"></script>
+    <script src="https://samples.argonjs.io/resources/lib/CSS3DArgonRenderer.js"></script>
+    <script src="https://samples.argonjs.io/resources/lib/CSS3DArgonHUD.js"></script>
+    <script src="https://samples.argonjs.io/resources/lib/ArgonSunMoon.js"></script>
+
+
+    <script>
+
+      AFRAME.registerComponent('cursor-listener', {
+          init: function () {
+/*              document.querySelector('#myVideo').addEventListener('mouseover', function (evt) {
+                  console.log('museenter: ', evt.detail.intersection.point);
+                  document.querySelector('#myVideo').play();
+
+              });
+              document.querySelector('#myVideo').addEventListener('mouseleave', function (evt) {
+                  console.log('mouseleave ', evt.detail.intersection.point);
+                  document.querySelector('#myVideo').pause();
+
+              });
+*/
+              this.el.addEventListener('mouseenter', function (evt) {
+                  //console.log('I was clicked at: ', evt.detail.intersection.point);
+                  document.querySelector('#myVideo').play();
+                  //this.setAttribute('material', 'opacity', 0.5);
+                  console.log('mouseenter: ', evt.detail.intersection.point);
+              });
+              this.el.addEventListener('mouseleave', function (evt) {
+                  document.querySelector('#myVideo').pause();
+                  //this.setAttribute('material', 'opacity', 1.0);
+              });
+              this.el.addEventListener('mouseover', function (evt) {
+                  //document.querySelector('#myVideo').pause();
+                  console.log('mousehover: ', evt.detail.intersection.point);
+              });
+              
+          }
+      });
+    </script>
+
+  </head>
+  <body >
+    <ar-scene sunmoon light="defaultLightsEnabled: false">
+        <a-assets>
+           {% load static %}
+            {% csrf_token %}
+           <img id="pkImage" src="{% static imageSrc %}" height="640" width="480"/>
+       </a-assets>
+      <!-- everything has to be attached to some reference frame -->
+      <ar-frame id="viewer" visible="true" parent="ar.stageEUS">
+ 
+      </ar-frame>
+
+      <!-- ambient light doesn't need to be attached -->'
+      <a-entity light="type: ambient; color: #444"></a-entity>
+
+      <ar-camera>
+     <!--   <a-entity id="myCursor" cursor="fuse:true; fuse-timeout: 1000"
+                    position="0 0 -0.1"
+                    geometry="primitive:ring; radiusInner: 0.001; radiusOuter: 0.0015"
+                    material="color: #2E3A87; opacity:0.3;">     
+                
+        </a-entity> -->
+         <!-- <a-image src="#pkImage" position="0 0 -5" width="3" height="4"></a-image> -->
+          <a-image src="#pkImage" position="0 0 -5" width="3" height="4"></a-image>
+  <!--       <a-sphere position="0 0 -5" radius="1" color="#EF2D5E" ></a-sphere>-->
+      </ar-camera>
+
+    </ar-scene>
+    <script>
+
+      var arScene = document.querySelector('ar-scene');
+      var content = document.querySelector('#arEntity1');
+
+      // the ar-camera has an argon reference frame attached, so when it gets it's first value,
+      // we'll get this event 
+      arScene.addEventListener("referenceframe-statuschanged", function () {
+        var camera = document.querySelector('ar-camera');
+        var vec = camera.object3D.getWorldDirection();
+        vec.multiplyScalar(-10);
+        content.setAttribute("position", {x: vec.x, y: vec.y, z: vec.z});
+      })
+
+    </script>
+
+
+  </body>
+</html><!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+
+</body>
+</html>

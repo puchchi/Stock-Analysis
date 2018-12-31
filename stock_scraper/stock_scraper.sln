@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2042
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "stock_scraper", "stock_scraper.pyproj", "{084AA35A-8739-4030-AEA8-2AF3185FDA11}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "WebFramework", "..\WebFramework\WebFramework.pyproj", "{5F981D28-9BF1-4DD5-B026-65F03D3CFD81}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{084AA35A-8739-4030-AEA8-2AF3185FDA11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{084AA35A-8739-4030-AEA8-2AF3185FDA11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F981D28-9BF1-4DD5-B026-65F03D3CFD81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F981D28-9BF1-4DD5-B026-65F03D3CFD81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F981D28-9BF1-4DD5-B026-65F03D3CFD81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F981D28-9BF1-4DD5-B026-65F03D3CFD81}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1D8CB7DB-4A5D-42C2-8E8A-BD2DEB07A654}
+	EndGlobalSection
+EndGlobal

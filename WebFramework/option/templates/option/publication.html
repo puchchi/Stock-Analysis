@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta charset="utf-8" />
+		<title>AR Demo</title>
+		
+		<script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>    
+		<script src="https://unpkg.com/@argonjs/argon@^1.2/dist/argon.js"></script>
+		<script src="https://rawgit.com/argonjs/argon-aframe/master/dist/argon-aframe.js"></script>
+		<script src="https://samples.argonjs.io/resources/lib/CSS3DArgonRenderer.js"></script>
+		<script src="https://samples.argonjs.io/resources/lib/CSS3DArgonHUD.js"></script>
+		<script src="https://samples.argonjs.io/resources/lib/ArgonSunMoon.js"></script>
+		
+		<script>
+			AFRAME.registerComponent('cursor-listener', {
+				init: function () {
+			  this.el.addEventListener('mouseenter', function (evt) {
+				  document.querySelector('#myVideo').play();
+			  });
+			  this.el.addEventListener('mouseleave', function (evt) {
+				  document.querySelector('#myVideo').pause();
+			  });
+			  
+			  }
+			  });
+		</script>
+		
+		<link href="publication-web-resources/css/idGeneratedStyles.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body id="publication" style="width:612px;height:792px;background-color:white;">
+	<div id="_idContainer000">
+			<div class="_idGenObjectAttribute-2">
+	    <ar-scene sunmoon light="defaultLightsEnabled: false">
+          <a-assets>
+              <video id="_idVideo000" poster="publication-web-resources/image/1.png" controls="controls">
+					<source src="option/video.mp4" type="video/mp4" />
+					<object class="_idGenObjectAttribute-1" type="application/x-shockwave-flash" data="publication-web-resources/video/mobilePlayer.swf">
+						<param name="movie" value="publication-web-resources/video/mobilePlayer.swf" />
+						<param name="allowFullScreen" value="false" />
+						<param name="wmode" value="transparent" />
+						<param name="flashVars" value="mediaSourceURL=24794540_381981905557319_7376113079655858176_n.mp4&amp;mediaPosterURL=publication-web-resources/image/1.png&amp;playerAutoPlay=false&amp;playerAllowInlinePlay=true&amp;skinURL=publication-web-resources/video/adobeSkin.swf" />
+					</object>
+				</video>
+            </a-assets>
+
+      <!-- everything has to be attached to some reference frame -->
+      <ar-frame id="viewer" visible="true" parent="ar.stageEUS">
+        <a-entity id="arEntity1" position="0 0 -8">
+            <a-plane rotation="0 0 0" position="0 1 -1"  opacity="0" look-at="[camera]" cursor-listener width="6" height="4" color="#7BC8A4"></a-plane>
+            <a-video id="myVideoEntity"  src="#myVideo" width="6" height="4" position="0 1 -1"></a-video>
+       
+        </a-entity>
+      </ar-frame>
+
+      <!-- ambient light doesn't need to be attached -->'
+      <a-entity light="type: ambient; color: #444"></a-entity>
+
+      <ar-camera>
+        <a-entity id="myCursor" cursor="fuse:true; fuse-timeout: 1000"
+                    position="0 0 -0.1"
+                    geometry="primitive:ring; radiusInner: 0.001; radiusOuter: 0.0015"
+                    material="color: #2E3A87; opacity:0.3;">          
+        </a-entity>
+      </ar-camera>
+
+    </ar-scene>
+	
+				</div>
+		</div>
+	
+    <script>
+
+      var arScene = document.querySelector('ar-scene');
+      var content = document.querySelector('#arEntity1');
+
+      // the ar-camera has an argon reference frame attached, so when it gets it's first value,
+      // we'll get this event 
+      arScene.addEventListener("referenceframe-statuschanged", function () {
+        var camera = document.querySelector('ar-camera');
+        var vec = camera.object3D.getWorldDirection();
+        vec.multiplyScalar(-10);
+        content.setAttribute("position", {x: vec.x, y: vec.y, z: vec.z});
+      })
+
+    </script>
+		
+				
+
+	</body>
+</html>

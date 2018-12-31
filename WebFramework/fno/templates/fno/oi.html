@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart','line']});
+      google.charts.setOnLoadCallback(historicalOIChart);
+      google.charts.setOnLoadCallback(liveOIChart);
+      google.charts.setOnLoadCallback(historicValueChart);
+
+      function historicalOIChart() {
+          var data = google.visualization.arrayToDataTable({{ historicOIData|safe }});
+
+        var options = {
+          title: 'Monthly Open Interest',
+            hAxis: {
+              title: 'Date'
+            },
+            vAxis: {
+              title: 'Open Interest'
+            },
+          curveType: 'function',
+          legend: { position: 'bottom' },
+          crosshair: {
+              color: '#888888',
+              trigger: 'selection'
+            }
+        };
+
+        //var chart = new google.charts.Line(document.getElementById('historical_oi_chart'));
+        var chart = new google.visualization.LineChart(document.getElementById('historical_oi_chart'));
+
+        chart.draw(data, options);
+      }
+
+        function liveOIChart() {
+          var data = google.visualization.arrayToDataTable({{ liveOIData|safe }});
+
+        var options = {
+          title: 'Intra Day Open Interest',
+            hAxis: {
+              title: 'Time'
+            },
+            vAxis: {
+              title: 'Open Interest'
+            },
+          crosshair: {
+              color: '#888888',
+              trigger: 'selection'
+            },
+        };
+
+        //var chart = new google.charts.Line(document.getElementById('live_oi_chart'));
+        var chart = new google.visualization.LineChart(document.getElementById('live_oi_chart'));
+
+        chart.draw(data, options);
+        //chart.setSelection([{row: 0, column: 1}]);
+      }
+
+        // live stock
+        function historicValueChart() {
+          var data = google.visualization.arrayToDataTable({{ historicValueData|safe }});
+
+        var options = {
+          title: 'Live Value',
+            hAxis: {
+              title: 'Date'
+            },
+            vAxis: {
+              title: 'Price'
+            },
+          curveType: 'function',
+          legend: { position: 'bottom' },
+          crosshair: {
+              color: '#888888',
+              trigger: 'selection'
+            }
+        };
+
+        //var chart = new google.charts.Line(document.getElementById('live_value_chart'));
+        var chart = new google.visualization.LineChart(document.getElementById('historic_value_chart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+
+    <style>
+        .column {
+            width: 47%;
+            height: 400px;
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .left{
+            float: left;
+            margin: 10px 10px 10px 30px;
+        }
+
+        .right{
+            float: right;
+            margin: 10px 30px 10px 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="row">
+        <div class="column left" id="historical_oi_chart" ></div>
+        <div class="column right" id="live_oi_chart" ></div>
+    </div>
+    <div class="row">
+        <div class="column left" id="historic_value_chart" ></div>
+    </div>
+</body>
+</html>

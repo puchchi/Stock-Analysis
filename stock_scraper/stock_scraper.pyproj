@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{084aa35a-8739-4030-aea8-2af3185fda11}</ProjectGuid>
+    <ProjectHome />
+    <StartupFile>MainDriver\main.py</StartupFile>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <LaunchProvider>Standard Python launcher</LaunchProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="DBInitialize\CleanNCreateLiveStockDB.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DBInitialize\CleanNCreateLiveOptionDB.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DBInitialize\Initialize.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DBInitialize\mainDBCreator.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DBInitialize\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Indicators\AccumulationNDistributionLine.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Indicators\AverageDirectionalIndex.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Indicators\MACD.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Indicators\OnBalanceVolume.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Indicators\RSI.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Indicators\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainDriver\AddingNewStock.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainDriver\CSVCreator\CreateOptionCSVDataFile.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainDriver\CSVCreator\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainDriver\IndicatorTester\ADXIndicatorTesting.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainDriver\ComputeIndicators.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainDriver\CSVCreator\CreateSpotCSVDataFile.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainDriver\IndicatorTester\ADXIndicatorTesting_Currency.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainDriver\IndicatorTester\CommonSignalChecker.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainDriver\IndicatorTester\IndicatorTesterClass.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainDriver\IndicatorTester\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainDriver\IndicatorTester\MACDIndicatorTesting.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainDriver\InfiniteRunningTask.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainDriver\main.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainDriver\OptionRelatedTesting.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainDriver\scheduling.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainDriver\TestingIndicatorData.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainDriver\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="scraper\HistoricEquity.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="scraper\HistoricIndex.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="scraper\LiveEquity.py" />
+    <Compile Include="scraper\LiveIndex.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="scraper\LiveOption.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="scraper\HistoricOption.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="scraper\items.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="scraper\pipelines.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="scraper\settings.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="scraper\spiders\HistoricEquitySpider.py" />
+    <Compile Include="scraper\spiders\HistoricIndexSpider.py" />
+    <Compile Include="scraper\spiders\HistoricOptionSpider.py" />
+    <Compile Include="scraper\spiders\LiveEquitySpider.py" />
+    <Compile Include="scraper\spiders\LiveFutureSpider.py" />
+    <Compile Include="scraper\spiders\LiveIndexSpider.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="scraper\spiders\LiveOptionSpider.py" />
+    <Compile Include="scraper\spiders\StockOptionSpider_Obsolete.py" />
+    <Compile Include="scraper\spiders\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="scraper\utility.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="scraper\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="test-module\test1.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="test-module\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="test-module\test.py">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DBInitialize\" />
+    <Folder Include="Indicators\" />
+    <Folder Include="MainDriver\" />
+    <Folder Include="MainDriver\CSVCreator\" />
+    <Folder Include="MainDriver\IndicatorTester\" />
+    <Folder Include="scraper\" />
+    <Folder Include="scraper\spiders\" />
+    <Folder Include="test-module\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="OIGraph - Copy.html" />
+    <Content Include="OIGraph.html" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
+</Project>

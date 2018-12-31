@@ -1,0 +1,130 @@
+{% load static %}
+<html>
+    <head>
+        <title>AR InDesign Demo</title>
+
+        <script src="https://aframe.io/releases/0.6.0/aframe.min.js"></script>
+        <script src="{% static "option/js/aframe-ar-edited.js" %}"></script>
+
+    </head>
+    <body>
+            <script>
+ /*               AFRAME.registerComponent('mouse-cursor', {
+                    init: function () {
+                        this.el.addEventListener('mouseenter', MouseDownEH)
+
+                        // We need to pause all video here
+                        var videos = document.querySelectorAll("video")
+                        for (var i = 0; i < videos.length; i++) {
+                            if (!videos[i].paused)
+                                videos[i].pause();
+                        }
+                    }
+                });
+
+                function MouseDownEH(evt) {
+
+                    var planeId = this.id;
+                    var videoSphereId = "aVideoSphere" + planeId;
+                    var videoSphereIdString = "#" + videoSphereId;
+                    var videoId = "#video" + planeId;
+                    var planeIdString = "#" + planeId;
+
+                    // Return if any other video is playing
+                    var videos = document.querySelectorAll("video")
+                    for (var i = 0; i < videos.length; i++) {
+                        if (!videos[i].paused)
+                            return;
+                        //videos[i].pause();
+                    }
+
+                    var videoSphere = document.querySelectorAll("a-videosphere")
+                    for (var i = 0; i < videoSphere.length; i++) {
+                        document.querySelector("#arEntity1").removeChild(videoSphere[i]);
+                    }
+
+                    if (document.querySelector(videoSphereIdString) == null) {
+                        var fragment = '<a-videosphere id="' + videoSphereId + '" src="' + videoId + '" ></a-videosphere>';
+                        document.querySelector(planeIdString).insertAdjacentHTML('afterend', fragment);
+                        document.querySelector(videoId).play();
+
+                        var planes = document.querySelectorAll("a-plane");
+                        for (var i = 0; i < planes.length; i++) {
+                            planes[i].setAttribute("opacity", 0);
+                            //planes[i].removeEventListener('mouseenter', MouseDownEH);
+                        }
+                    }
+                };
+
+                // Adding esc keydown EH to close video
+                document.addEventListener('keydown', function (event) {
+                    document.querySelectorAll('#myCursor').forEach(function (obj) {
+                        if (event.key == "Escape") {
+                            var videos = document.querySelectorAll("video")
+                            for (var i = 0; i < videos.length; i++) {
+                                if (!videos[i].paused)
+                                    videos[i].pause();
+                            }
+
+                            var videoSphere = document.querySelectorAll("a-videosphere")
+                            for (var i = 0; i < videoSphere.length; i++) {
+                                document.querySelector("#arEntity1").removeChild(videoSphere[i]);
+                            }
+
+                            var planes = document.querySelectorAll("a-plane");
+                            for (var i = 0; i < planes.length; i++) {
+                                planes[i].setAttribute("opacity", 1);
+                                //planes[i].addEventListener("mousedown", MouseDownEH);
+                            }
+                        }
+                    });
+                });
+*/
+            </script>
+
+            <script>
+/*                AFRAME.registerComponent('mouse-cursor', {
+                    init: function () {
+
+                        console.log(window.location.href);
+                        var el = this.el;
+                        el.addEventListener('markerfound', function () {
+                            console.log("marker found")
+                        });
+                    }
+                });*/
+            </script>
+
+            <!--<a-scene embedded arjs="<sourceType:video; sourceUrl: {% static "option/_360Video_1.mp4" %}; debugUIEnabled: false" >-->
+            <a-scene embedded arjs="debugUIEnabled: false">
+                         
+                
+                <a-marker preset='hiro' id="marker_1" videoid="video_1">
+                </a-marker>
+
+                <a-marker preset='kanji' id="marker_2" videoid="video_2">
+                </a-marker>
+                
+                <!--
+                <a-marker type='barcode' value='5'>
+                    <a-box position='0 0.5 0' material='color: red;'></a-box>
+                </a-marker>
+
+                <a-marker type='pattern' url='{% static "option/pattern-marker-hiro.patt" %}'>
+                  <a-box position='0 0.5 0' material='color: red;'></a-box>
+                </a-marker>
+                -->
+                <a-entity camera></a-entity>
+            </a-scene>
+
+    <script>
+        function markerhit(el) {
+            //console.log(el);
+            id = el.getAttribute('videoid');
+            //console.log(el.getAttribute('id'));
+            //console.log("Marker hit funtion");
+            window.location.href = "arvideoplayer" + id;
+        }
+
+</script>
+</body></html>

@@ -1,0 +1,207 @@
+﻿<!-- This is working file, don't change it-->
+
+{% load static %}
+<html>
+    <head>
+        <title>VR Content, Authored in InDesign</title>
+
+        <script src="{% static "option/js/aframe.min.js" %}"></script>
+        <script src="{% static "option/js/argon.js" %}"></script>
+        <script src="{% static "option/js/argon-aframe.js" %}"></script>
+        <script src="{% static "option/js/CSS3DArgonRenderer.js" %}"></script>
+        <script src="{% static "option/js/CSS3DArgonHUD.js" %}"></script>
+        <script src="{% static "option/js/ArgonSunMoon.js" %}"></script>
+
+    </head>
+    <body>
+            <script>
+                AFRAME.registerComponent('mouse-cursor', {
+                    init: function () {
+                        this.el.addEventListener('mouseenter', MouseDownEH)
+
+                        // We need to pause all video here
+                        var videos = document.querySelectorAll("video")
+                        for (var i = 0; i < videos.length; i++) {
+                            if (!videos[i].paused)
+                                videos[i].pause();
+                        }
+                    }
+                });
+
+                function MouseDownEH(evt) {
+
+                    // Return if any other video is playing
+                    var videos = document.querySelectorAll("video")
+                    for (var i = 0; i < videos.length; i++) {
+                        if (!videos[i].paused)
+                            //videos[i].pause();
+                            return;
+                    }
+
+                    var videoSphere = document.querySelectorAll("a-videosphere")
+                    for (var i = 0; i < videoSphere.length; i++) {
+                        document.querySelector("#arEntity1").removeChild(videoSphere[i]);
+                    }
+
+                    var video = document.querySelectorAll("a-video")
+                    for (var i = 0; i < video.length; i++) {
+                        document.querySelector("#arEntity1").removeChild(video[i]);
+                    }
+
+                    var imageId = this.id;
+
+                    if (imageId == "_1") {
+                        console.log(evt);
+                        var fragment = '<a-video src="#video_1" width="1.2" height="1.2" position="-1.2 1.3 0" ></a-videosphere>';
+                        document.querySelector("#_1").insertAdjacentHTML('afterend', fragment);
+                        document.querySelector("#video_1").play();
+                        document.querySelector("#_1").setAttribute("opacity", 0);
+                        return;
+                       // <a-video src="#video_1" position="-3 0 0" width="2.160254" height="2.795623"></a-video>
+                    }
+                    else if (imageId == "_4") {
+                        var fragment = '<a-videosphere src="#video_2" ></a-videosphere>';
+                        document.querySelector("#_4").insertAdjacentHTML('afterend', fragment);
+                        document.querySelector("#video_2").play();
+                    }
+
+                    
+
+                    var images = document.querySelectorAll("a-image");
+                    for (var i = 0; i < images.length; i++) {
+                        images[i].setAttribute("opacity", 0);
+                        //planes[i].addEventListener("mousedown", MouseDownEH);
+                    }
+
+                    var text = document.querySelectorAll("a-text");
+                    for (var i = 0; i < text.length; i++) {
+                        text[i].setAttribute("opacity", 0);
+                        //planes[i].addEventListener("mousedown", MouseDownEH);
+                    }
+
+                    /*
+                    var videoSphereId = "aVideoSphere" + planeId;
+                    var videoSphereIdString = "#" + videoSphereId;
+                    var videoId = "#video" + planeId;
+                    var planeIdString = "#" + planeId;
+
+                    
+
+                    var videoSphere = document.querySelectorAll("a-videosphere")
+                    for (var i = 0; i < videoSphere.length; i++) {
+                        document.querySelector("#arEntity1").removeChild(videoSphere[i]);
+                    }
+
+                    if (document.querySelector(videoSphereIdString) == null) {
+                        var fragment = '<a-videosphere id="' + videoSphereId + '" src="' + videoId + '" ></a-videosphere>';
+                        document.querySelector(planeIdString).insertAdjacentHTML('afterend', fragment);
+                        document.querySelector(videoId).play();
+
+                        var planes = document.querySelectorAll("a-plane");
+                        for (var i = 0; i < planes.length; i++) {
+                            planes[i].setAttribute("opacity", 0);
+                            //planes[i].removeEventListener('mouseenter', MouseDownEH);
+                        }
+                    }
+                    */
+                };
+
+                // Adding esc keydown EH to close video
+                document.addEventListener('keydown', function (event) {
+                    document.querySelectorAll('#myCursor').forEach(function (obj) {
+                        if (event.key == "Escape") {
+                            var videos = document.querySelectorAll("video")
+                            for (var i = 0; i < videos.length; i++) {
+                                if (!videos[i].paused)
+                                    videos[i].pause();
+                            }
+
+                            var videoSphere = document.querySelectorAll("a-videosphere")
+                            for (var i = 0; i < videoSphere.length; i++) {
+                                document.querySelector("#arEntity1").removeChild(videoSphere[i]);
+                            }
+
+                            var video = document.querySelectorAll("a-video")
+                            for (var i = 0; i < video.length; i++) {
+                                document.querySelector("#arEntity1").removeChild(video[i]);
+                            }
+
+                            var images = document.querySelectorAll("a-image");
+                            for (var i = 0; i < images.length; i++) {
+                                images[i].setAttribute("opacity", 1);
+                                //planes[i].addEventListener("mousedown", MouseDownEH);
+                            }
+
+                            var text = document.querySelectorAll("a-text");
+                            for (var i = 0; i < text.length; i++) {
+                                text[i].setAttribute("opacity", 1);
+                                //planes[i].addEventListener("mousedown", MouseDownEH);
+                            }
+                        }
+                    });
+                });
+        </script>
+
+        <ar-scene sunmoon arvr light="defaultLightsEnabled: false">
+            <a-assets>
+                <video id="video_1" autoplay="false" loop="true" src="{% static "option/planarvideo.mp4" %}" webkit-playsinline controls muted></video>
+                <video id="video_2" autoplay="false" loop="true" src="{% static "option/vr360demovideo.mp4" %}" webkit-playsinline controls muted></video>
+
+                <img id="image_1" src="{% static "option/image_1.png" %}"/>
+                <img id="image_2" src="{% static "option/image_2.png" %}"/>
+                <img id="image_3" src="{% static "option/image_3.png" %}"/>
+                <img id="image_4" src="{% static "option/image_4.png" %}"/>
+                <img id="image_5" src="{% static "option/image_5.png" %}"/>
+                <img id="image_6" src="{% static "option/image_6.png" %}"/>
+                <img id="image_7" src="{% static "option/image_7.png" %}"/>
+                <img id="image_8" src="{% static "option/image_8.png" %}"/>
+                <img id="image_9" src="{% static "option/image_9.jpg" %}"/>
+            </a-assets>
+
+            <ar-frame id="viewer" visible="true" parent="ar.stageEUS">
+                <a-entity id="arEntity1" position="0 0 -8" cursor="rayOrigin:entity">
+
+                  <!--  <a-videosphere id="aVideosphere_1" src="#video1" ></a-videosphere>
+                    <a-text value="VR content, authored in InDesign" color="#000000" position="-1.8 2.5 0" height="2" width="5" wrapCount="10"></a-text>
+
+                    <a-plane position='.3 -0.9 -4' material='color: #ffffff;' width="6" height="7.4"></a-plane>-->
+
+                    <a-image id="_1" mouse-cursor src="#image_1" position="-1.2 1.5 -1" width="2.5" height="2.5"></a-image>
+                    <a-image id="_4" src="#image_4" mouse-cursor position="1.6 -1.8 -1" width="2.2" height="2.2"></a-image>
+                    
+
+                    <a-image src="#image_2" position="0 .5 -3" width="3.5" height="3.5"></a-image>
+                    <a-image src="#image_3" position="-1.5 -1 -1" width="1.1" height="0.8"></a-image>
+                    <a-image src="#image_5" position="1.5 -.5 0" width="2.795623" height="2.795623"></a-image>
+                    <a-image src="#image_6" position="-.2 -1.7 -2" width="2.4" height=".4"></a-image>
+                    <a-image src="#image_7" position=".1 0.5 -2" width="2.2" height="2.5"></a-image>
+                    <a-image src="#image_8" position=".2.5 -2.8 0" width="4.3" height="0.8"></a-image>
+                    <a-image src="#image_9" position=".25 -1 -4" width="6" height="7.3"></a-image>
+                 <!--   <a-videosphere id="aVideosphere_2" src="#video2" ></a-videosphere>-->
+
+
+                </a-entity>
+            </ar-frame>
+            
+            <a-entity light="type: ambient; color: #444"></a-entity>
+            <ar-camera>
+                <a-entity id="myCursor" cursor="rayOrigin: mouse" position="0 0 -0.1" geometry="primitive:ring; radiusInner: 0.001; radiusOuter: 0.0015" material="color: #2E3A87; opacity:0.3;"></a-entity>
+            </ar-camera>
+
+</ar-scene>
+    <script>
+    var arScene = document.querySelector('ar-scene');
+    var content = document.querySelector('#arEntity1');
+    arScene.addEventListener("referenceframe-statuschanged", function() {
+        var camera = document.querySelector('ar-camera');
+        var vec = camera.object3D.getWorldDirection();
+        vec.multiplyScalar(-10);
+        content.setAttribute("position", {
+            x: vec.x,
+            y: vec.y,
+            z: vec.z
+        });
+    })
+</script>
+
+</body></html>

@@ -1,0 +1,63 @@
+body, div, dl, dt, dd, h1, h2, h3, h4, h5, h6, p, pre, code, blockquote {
+	margin:0;
+	padding:0;
+	border-width:0;
+	text-rendering:optimizeSpeed;
+}
+div > svg {
+	position:absolute;
+}
+#_idVideo000 {
+	-ms-transform:translate(16.879%,0.000%) rotate(0.000deg) skew(0.000deg) scale(0.662,1.000);
+	-ms-transform-origin:0% 0%;
+	-webkit-transform:translate(16.879%,0.000%) rotate(0.000deg) skew(0.000deg) scale(0.662,1.000);
+	-webkit-transform-origin:0% 0%;
+	height:100.00%;
+	object-fit:fill;
+	transform:translate(16.879%,0.000%) rotate(0.000deg) skew(0.000deg) scale(0.662,1.000);
+	transform:translate(16.879%,0.000%) rotate(0.000deg) skew(0.000deg) scale(0.662,1.000);
+	transform-origin:0% 0%;
+	transform-origin:0% 0%;
+	width:100.00%;
+}
+#_idContainer000 {
+	-ms-transform:translate(78.000px,170.399px) rotate(0.000deg) skew(0.000deg) scale(1.000,1.000);
+	-ms-transform-origin:0% 0%;
+	-webkit-transform:translate(78.000px,170.399px) rotate(0.000deg) skew(0.000deg) scale(1.000,1.000);
+	-webkit-transform-origin:0% 0%;
+	background-image:url(../image/2.png);
+	background-repeat:no-repeat;
+	background-size:contain;
+	height:265.20px;
+	left:0px;
+	overflow:hidden;
+	position:absolute;
+	text-align:left;
+	top:0px;
+	transform:translate(78.000px,170.399px) rotate(0.000deg) skew(0.000deg) scale(1.000,1.000);
+	transform:translate(78.000px,170.399px) rotate(0.000deg) skew(0.000deg) scale(1.000,1.000);
+	transform-origin:0% 0%;
+	transform-origin:0% 0%;
+	width:404.40px;
+}
+object._idGenObjectAttribute-1 {
+	-ms-transform:translate(16.879%,0.000%) rotate(0.000deg) skew(0.000deg) scale(0.662,1.000);
+	-ms-transform-origin:0% 0%;
+	-webkit-transform:translate(16.879%,0.000%) rotate(0.000deg) skew(0.000deg) scale(0.662,1.000);
+	-webkit-transform-origin:0% 0%;
+	height:100.00%;
+	object-fit:fill;
+	transform:translate(16.879%,0.000%) rotate(0.000deg) skew(0.000deg) scale(0.662,1.000);
+	transform:translate(16.879%,0.000%) rotate(0.000deg) skew(0.000deg) scale(0.662,1.000);
+	transform-origin:0% 0%;
+	transform-origin:0% 0%;
+	width:100.00%;
+}
+div._idGenObjectAttribute-2 {
+	height:265px;
+	left:0px;
+	overflow:hidden;
+	position:absolute;
+	top:0px;
+	width:404px;
+}

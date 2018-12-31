@@ -1,0 +1,124 @@
+﻿<!-- This is working file, don't change it-->
+
+{% load static %}
+<html>
+    <head>
+        <title>InDesign AR Video Player</title>
+
+        <script src="{% static "option/js/aframe.min.js" %}"></script>
+        <script src="{% static "option/js/argon-edited.js" %}"></script>
+        <script src="{% static "option/js/argon-aframe.js" %}"></script>
+        <script src="{% static "option/js/CSS3DArgonRenderer.js" %}"></script>
+        <script src="{% static "option/js/CSS3DArgonHUD.js" %}"></script>
+        <script src="{% static "option/js/ArgonSunMoon.js" %}"></script>
+
+    </head>
+    <body>
+            <script>
+                AFRAME.registerComponent('mouse-cursor', {
+                    init: function () {
+                        this.el.addEventListener('mousedown', MouseDownEH)
+
+                        // We need to pause all video here
+                   /*     var videos = document.querySelectorAll("video")
+                        for (var i = 0; i < videos.length; i++) {
+                            if (!videos[i].paused)
+                                videos[i].pause();
+                        }*/
+                    }
+                });
+
+                function MouseDownEH(evt) {
+
+ /*                   var planeId = this.id;
+                    var videoSphereId = "aVideoSphere" + planeId;
+                    var videoSphereIdString = "#" + videoSphereId;
+                    var videoId = "#video" + planeId;
+                    var planeIdString = "#" + planeId;
+
+                    // Return if any other video is playing
+                    var videos = document.querySelectorAll("video")
+                    for (var i = 0; i < videos.length; i++) {
+                        if (!videos[i].paused)
+                            return;
+                        //videos[i].pause();
+                    }
+
+                    var videoSphere = document.querySelectorAll("a-videosphere")
+                    for (var i = 0; i < videoSphere.length; i++) {
+                        document.querySelector("#arEntity1").removeChild(videoSphere[i]);
+                    }
+
+                    if (document.querySelector(videoSphereIdString) == null) {
+                        var fragment = '<a-videosphere id="' + videoSphereId + '" src="' + videoId + '" ></a-videosphere>';
+                        document.querySelector(planeIdString).insertAdjacentHTML('afterend', fragment);
+                        document.querySelector(videoId).play();
+
+                        var planes = document.querySelectorAll("a-plane");
+                        for (var i = 0; i < planes.length; i++) {
+                            planes[i].setAttribute("opacity", 0);
+                            //planes[i].removeEventListener('mouseenter', MouseDownEH);
+                        }
+                    }*/
+                };
+
+                // Adding esc keydown EH to close video
+                document.addEventListener('keydown', function (event) {
+                    if (event.key == "Escape") {
+                        window.location.href = 'ar';
+                    }
+
+   /*                 document.querySelectorAll('#myCursor').forEach(function (obj) {
+                        if (event.key == "Escape") {
+                            var videos = document.querySelectorAll("video")
+                            for (var i = 0; i < videos.length; i++) {
+                                if (!videos[i].paused)
+                                    videos[i].pause();
+                            }
+
+                            var videoSphere = document.querySelectorAll("a-videosphere")
+                            for (var i = 0; i < videoSphere.length; i++) {
+                                document.querySelector("#arEntity1").removeChild(videoSphere[i]);
+                            }
+
+                            var planes = document.querySelectorAll("a-plane");
+                            for (var i = 0; i < planes.length; i++) {
+                                planes[i].setAttribute("opacity", 1);
+                                //planes[i].addEventListener("mousedown", MouseDownEH);
+                            }
+                        }
+                    });*/
+                });
+
+                document.addEventListener('dblclick', function (event) {
+                    window.location.href = 'ar';
+                });
+                document.addEventListener('click', function (event) {
+                    var videos = document.querySelectorAll("video")
+                    if (!videos[0].paused)
+                        videos[0].pause();
+                    else
+                        videos[0].play();
+                });
+
+                
+        </script>
+
+        <ar-scene sunmoon arvr light="defaultLightsEnabled: false">
+            <a-assets>
+                <video id="video" autoplay="false" loop="true" src="{% static videoName %}" webkit-playsinline controls muted></video>
+            </a-assets>
+
+            <ar-frame id="viewer" visible="true" parent="ar.stageEUS">
+                <a-entity id="arEntity1" position="0 0 -8" cursor="rayOrigin:entity">
+                    <a-videosphere mouse-cursor id="aVideosphere_1" src="#video" ></a-videosphere>
+
+                </a-entity>
+            </ar-frame>
+            <div id="testingdiv" width="1600" height="800"></div>
+</ar-scene>
+
+<script>
+</script>
+</body>
+</html>

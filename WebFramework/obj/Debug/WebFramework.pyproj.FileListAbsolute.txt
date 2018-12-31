@@ -1,0 +1,15 @@
+C:\Users\anursin\Documents\GitHub\WebFramework\bin\Microsoft.PythonTools.WebRole.dll
+C:\Users\anursin\Documents\GitHub\WebFramework\obj\Debug\attach_server.py
+C:\Users\anursin\Documents\GitHub\WebFramework\obj\Debug\visualstudio_py_debugger.py
+C:\Users\anursin\Documents\GitHub\WebFramework\obj\Debug\visualstudio_py_repl.py
+C:\Users\anursin\Documents\GitHub\WebFramework\obj\Debug\visualstudio_py_util.py
+C:\Users\anursin\Documents\GitHub\WebFramework\obj\Debug\__init__.py
+C:\Users\anursin\Documents\GitHub\WebFramework\obj\Debug\__main__.py
+C:\Users\anursin\Documents\GitHub\WebFramework\bin\AzureSetup.cfg
+C:\Users\anursin\Documents\GitHub\WebFramework\bin\Microsoft.PythonTools.AzureSetup.exe
+C:\Users\anursin\Documents\GitHub\WebFramework\bin\Microsoft.PythonTools.AzureSetup.exe.config
+C:\Users\anursin\Documents\GitHub\WebFramework\bin\wfastcgi.py
+C:\Users\anursin\Documents\GitHub\WebFramework\obj\Debug\deployment-updated-orig-prefix.txt
+C:\Users\anursin\Documents\GitHub\WebFramework\ptvs_virtualenv_proxy.py
+C:\Users\anursin\Documents\GitHub\WebFramework\obj\Debug\web.config
+C:\Users\anursin\Documents\GitHub\WebFramework\obj\Debug\web.debug.config
