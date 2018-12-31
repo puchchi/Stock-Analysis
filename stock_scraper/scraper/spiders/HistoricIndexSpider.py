@@ -55,6 +55,11 @@ class kHistoricIndexSpider(scrapy.Spider):
 
             tempEndDate = startDate + datetime.timedelta(days=90)
 
+            forceBreak = False
+            if tempEndDate >= datetime.datetime.now():
+                tempEndDate = datetime.datetime.now() - datetime.timedelta(days=1)
+                forceBreak = True
+
             startDateStr = startDate.strftime("%d-%b-%Y")
             tempEndDatStr = tempEndDate.strftime("%d-%b-%Y")
 
@@ -62,6 +67,9 @@ class kHistoricIndexSpider(scrapy.Spider):
             yield scrapy.Request(url,self.parse)
 
             startDate = tempEndDate
+
+            if forceBreak:
+                break
 
    
     # used to save respective xpath value with their item,
@@ -84,7 +92,7 @@ class kHistoricIndexSpider(scrapy.Spider):
             # Storing all selector except top 3(which contains waste data)
             res = response.xpath('//tr[position()>3]')
             # val will iterate from 0 to (last -1), because last res item is waste
-            for val in res[0:(len(res) - 1)]:
+            for val in res[0:len(res)]:
                 loader = ItemLoader(kHistoricIndexItem(), val)
                 loader.default_input_processor = MapCompose(unicode.strip)
                 loader.default_output_processor = Join()

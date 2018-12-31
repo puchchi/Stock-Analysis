@@ -17,16 +17,11 @@ class kComputeIndicators:
             parser = lambda date: pd.datetime.strptime(date, '%Y%m%d')
             self.df = pd.read_csv(self.csvFileName, parse_dates = [0], date_parser = parser, index_col = "Date")
         except Exception as e:
-            parser = lambda date: pd.datetime.strptime(date, '%Y-%m-%d %H:%M')
-            self.df = pd.read_csv(self.csvFileName, parse_dates = [0], date_parser = parser, index_col = "Date")
-        
+            print "Exception in parsing csv file in ComputeIndicator Init()"
+            print e        
 
     def __call__(self):
         dataframe = self.df
-
-        # cleaing dataframe for any record which has volume 0
-        dataframe= dataframe.replace(0,nan)
-        dataframe= dataframe.dropna(how='any',axis=0)
 
         # Calculating ADL
         adl = AccumulationNDistributionLine.kAccumulationNDistributionLine()
@@ -61,15 +56,7 @@ class kComputeIndicators:
 
     def calculateADX(self):
         dataframe = self.df
-
-        # for eurusd we going to need date b/w 2016-1-1 to 2016-12-31
-        #remove this part
-        dataframe = dataframe.loc['2013-01-01':'2013-12-31']
-
-        # cleaing dataframe for any record which has volume 0
-        dataframe= dataframe.replace(0,nan)
-        dataframe= dataframe.dropna(how='any',axis=0)
-
+        
         # Calculating ADX
         adx = AverageDirectionalIndex.kAverageDirectionalIndex()
         adxDataframe = adx.calculate(dataframe)

@@ -45,7 +45,7 @@ class kCreateSpotCSVDataFile():
                 a.writerows(row)
 
             # Adding live row
-            liveSQL = """select Open, High, Low, LTP, Volume from %s where timestamp=(select max(timestamp) from %s where symbol='%s')""" %(self.liveTableName, self.liveTableName, self.symbol)
+            liveSQL = """select Open, High, Low, LTP, Volume from %s where symbol='%s' and timestamp=(select max(timestamp) from %s where symbol='%s')""" %(self.liveTableName, self.symbol, self.liveTableName, self.symbol)
             cursor.execute(liveSQL)
             liveRow = cursor.fetchall()
             if (liveRow.__len__()>0):

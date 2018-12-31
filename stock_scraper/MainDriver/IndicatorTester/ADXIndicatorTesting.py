@@ -73,18 +73,35 @@ class kADXIndicatorTesting(kIndicatorTesterClass):
 
         if flag:
             if minusDIs[lastIndex] > plusDIs[lastIndex] and adxs[lastIndex] > 20:
-                subject = "Stock Alert | Level 0 | Date- " + str(df.index[lastIndex])
-                content = "Sell signal for " + self.symbol + ". LTP: " + str(close[lastIndex]) + "\nADX Indicator"
+                ltp = close[lastIndex]
+                tp1 = ltp*(1-TARGET_PRICE_1*0.01)
+                tp2 = ltp*(1-TARGET_PRICE_2*0.01)
+                tp3 = ltp*(1-TARGET_PRICE_3*0.01)
+                sl = ltp(1+STOP_LOSS*0.01)
+                subject = "Stock Alert | Date " + str(df.index[lastIndex])
+                content = "Sell signal for " + self.symbol + ". LTP: " + str(close[lastIndex])
+                content += "\n\tTarget prices: " + str(tp1) + ", " + str(tp2) + ", " + str(tp3)
+                content += "\n\tStoploss: " + str(sl)
+                content += "\n\nADX Indicator"
                 SENDMAIL(subject, content)
-                print "\n\n\n###########################    Sell signal " + self.symbol + " on " + str(df.index[lastIndex]) + ": LTP " + str(close[lastIndex]) + "     ###########################\n\n\n"
+                print "\n\n\n###########################    Sell signal " + self.symbol + " on " + str(df.index[lastIndex]) + ": LTP " + str(close[lastIndex]) + "Target prices: " + str(tp1) + ", " + str(tp2) + ", " + str(tp3) + "Stoploss: " + str(sl) + "     ###########################\n\n\n"
             else:
                 print "No Sell signal for " + self.symbol + " on " + str(df.index[lastIndex])
         else:
             if plusDIs[lastIndex] > minusDIs[lastIndex] and adxs[lastIndex] > 20:
-                subject = "Stock Alert | Level 0 | Date- " + str(df.index[lastIndex])
-                content = "Buy signal for " + self.symbol + ". LTP: " + str(close[lastIndex]) + "\nADX Indicator"
+                ltp = close[lastIndex]
+                tp1 = ltp*(1+TARGET_PRICE_1*0.01)
+                tp2 = ltp*(1+TARGET_PRICE_2*0.01)
+                tp3 = ltp*(1+TARGET_PRICE_3*0.01)
+                sl = ltp(1-STOP_LOSS*0.01)
+                subject = "Stock Alert | Date " + str(df.index[lastIndex])
+                content = "Buy signal for " + self.symbol + ". LTP: " + str(close[lastIndex])
+                content += "\n\tTarget prices: " + str(tp1) + ", " + str(tp2) + ", " + str(tp3)
+                content += "\n\tStoploss: " + str(sl)
+                content += "\n\nADX Indicator"
+
                 SENDMAIL(subject, content)
-                print "\n\n\n###########################   Buy Signal for " + self.symbol + " on " + str(df.index[lastIndex]) + ": LTP " + str(close[lastIndex]) +"    ###########################\n\n\n"
+                print "\n\n\n###########################   Buy Signal for " + self.symbol + " on " + str(df.index[lastIndex]) + ": LTP " + str(close[lastIndex]) + "Target prices: " + str(tp1) + ", " + str(tp2) + ", " + str(tp3) + "Stoploss: " + str(sl) +"    ###########################\n\n\n"
             else:
                 print "No Buy signal for " + self.symbol + " on " + str(df.index[lastIndex])
 

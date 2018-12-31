@@ -34,6 +34,10 @@ CSV_INDICATOR_EXTENSTION =      "Indicator.csv"
 SIGNAL_TEST_RESULT =            "SignalTestResult"
 START_INDEX =                   30      # How many rows we need to scrape from csv file from start
 END_INDEX =                     7
+TARGET_PRICE_1 =                1   #1%
+TARGET_PRICE_2 =                2 #2%
+TARGET_PRICE_3 =                3   #3%
+STOP_LOSS =                     2.5    #2.5%
 NIFTY_STOCK_LIST =              ["SBIN", "ICICIBANK", "HDFC", "KOTAKBANK", "HDFCBANK", "AXISBANK", "TATASTEEL", "CIPLA", "INFY", "BPCL", "COALINDIA", 
              "NTPC", "POWERGRID", "ONGC", "BAJFINANCE", "INFRATEL", "JSWSTEEL", "TATAMOTORS", "HEROMOTOCO", "SUNPHARMA", "DRREDDY",
              "HCLTECH", "ULTRACEMCO", "HINDUNILVR", "VEDL", "GRASIM", "TECHM","INDUSINDBK", "GAIL","ASIANPAINT", "EICHERMOT",
@@ -46,13 +50,13 @@ MAIL_SENDER =                   "anursin@adobe.com"
 
 
 # Not needed for automatic crawling
-stockName = "EURUSD"      # Option symbol of nifty is "NIFTY", "SBIN", "ICICIBANK", "HDFC", "INFY", "TATASTEEL"
+stockName = "SBIN"      # Option symbol of nifty is "NIFTY", "SBIN", "ICICIBANK", "HDFC", "INFY", "TATASTEEL"
                             #  "CIPLA", "KOTAKBANK", "HDFCBANK", "AXISBANK", 
 stockList = ["SBIN", "ICICIBANK", "HDFC", "KOTAKBANK", "HDFCBANK", "AXISBANK", "TATASTEEL", "CIPLA", "INFY", "BPCL", "COALINDIA", 
              "NTPC", "POWERGRID", "ONGC", "BAJFINANCE", "INFRATEL", "JSWSTEEL", "TATAMOTORS", "HEROMOTOCO", "SUNPHARMA", "DRREDDY",
              "HCLTECH", "ULTRACEMCO", "HINDUNILVR", "VEDL", "GRASIM", "TECHM","INDUSINDBK", "GAIL","ASIANPAINT", "EICHERMOT",
              "RELIANCE", "BHARTIARTL", "TITAN", "WIPRO", "INFY", "MARUTI", "IBULHSGFIN", "ZEEL", "ADANIPORTS", "UPL", "IOC", "BAJAJFINSV"]
-stockType = "Currency"     # Index or Equity or LiveOption or Currency
+stockType = "Equity"     # Index or Equity or LiveOption
 dbTableName = HISTORIC_STOCK_TABLENAME + stockName
 dbTableNameOption = HISTORIC_OPTION_TABLENAME + stockName    # Final table name will be OptionValueOfNiftyJan2018
 dbTableNameLiveOption = LIVE_STOCK_TABLENAME + stockName     
@@ -61,18 +65,15 @@ csvFileNameOption = "data/NiftyOption"            #append .CSV in function
 csvFileNameWithIndicators = "data/NIFTYIndicator.csv"
 startYear = 2010
 endYear = 2018              # expected year + 1
-testDataDateLower ="01-Jan-2013" # Date from which backward test signal will get genrated
-testDataDateUpper ="31-Dec-2013"
+testDataDateLower ="01-Jan-2018" # Date from which backward test signal will get genrated
+testDataDateUpper ="31-Dec-2018"
 endMonth = "Mar"
-dbStartDate = 20100101      #yyyymmdd
+dbStartDate = 20180101      #yyyymmdd
 dbEndDate = 20181231
 startIndex = 30             # How many rows we need to scrape from csv file from start
 endIndex = 7                
 timeIntervalBetweenScrape = 60      #in seconds
 thresholdPassFailPer = 75
-TARGET_PIP =            50
-STOPLOSS_PIP =          75
-BROKERAGE_PIP =         2
 
 
 # Option Data

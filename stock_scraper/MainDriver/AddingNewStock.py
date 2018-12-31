@@ -14,7 +14,7 @@ from DBInitialize import Initialize
 from scraper import utility, HistoricEquity, HistoricIndex, HistoricOption, LiveOption
 from MainDriver import ComputeIndicators, OptionRelatedTesting
 from MainDriver.CSVCreator import CreateSpotCSVDataFile, CreateOptionCSVDataFile
-from MainDriver.IndicatorTester import ADXIndicatorTesting, MACDIndicatorTesting, CommonSignalChecker, ADXIndicatorTesting_Currency
+from MainDriver.IndicatorTester import ADXIndicatorTesting, MACDIndicatorTesting, CommonSignalChecker
 
 class kAddingNewStock:
 
@@ -111,9 +111,6 @@ class kAddingNewStock:
         if self.stockType == "Index" or self.stockType == "Equity":
             computeIndicator = ComputeIndicators.kComputeIndicators(self.stockName)
             computeIndicator()
-        elif self.stockType == "Currency":
-            computeIndicator = ComputeIndicators.kComputeIndicators(self.stockName)
-            computeIndicator.calculateADX()
 
     def testIndicator(self):
         print "==============================================="
@@ -132,10 +129,6 @@ class kAddingNewStock:
             elif self.stockType == "Option":
                 optionTesting = OptionRelatedTesting.kOptionRelatedTesting(utility.optionCSVFileForTesting)
                 optionTesting()
-            elif self.stockType == "Currency":
-                adxTestIndicator = ADXIndicatorTesting_Currency.kADXIndicatorTesting_currency(self.stockName, 10)
-                adxTestIndicator.testBackData()
-                adxTestIndicator.dumpTestData()
 
         except Exception as e:
             print "Exeception in testing indicator."
@@ -150,10 +143,10 @@ if __name__ == "__main__":
         # if you want to do all 5 steps, uncomment following line
         #addingNewStock()
 
-        #addingNewStock.initializeDb()
-        #addingNewStock.scrapeSpotData()
-        #addingNewStock.createCSVFile()
-        #addingNewStock.createIndicators()
+        addingNewStock.initializeDb()
+        addingNewStock.scrapeSpotData()
+        addingNewStock.createCSVFile()
+        addingNewStock.createIndicators()
         addingNewStock.testIndicator()
 
     # Checking for common signal in ADX & MACD
