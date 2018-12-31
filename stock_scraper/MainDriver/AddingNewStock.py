@@ -14,7 +14,7 @@ from DBInitialize import Initialize
 from scraper import utility, HistoricEquity, HistoricIndex, HistoricOption, LiveOption
 from MainDriver import ComputeIndicators, OptionRelatedTesting
 from MainDriver.CSVCreator import CreateSpotCSVDataFile, CreateOptionCSVDataFile
-from MainDriver.IndicatorTester import ADXIndicatorTesting, MACDIndicatorTesting, CommonSignalChecker, ADXIndicatorTesting_Currency
+from MainDriver.IndicatorTester import ADXIndicatorTesting, MACDIndicatorTesting, CommonSignalChecker
 
 class kAddingNewStock:
 
@@ -133,7 +133,7 @@ class kAddingNewStock:
                 optionTesting = OptionRelatedTesting.kOptionRelatedTesting(utility.optionCSVFileForTesting)
                 optionTesting()
             elif self.stockType == "Currency":
-                adxTestIndicator = ADXIndicatorTesting_Currency.kADXIndicatorTesting_currency(self.stockName, 10)
+                adxTestIndicator = ADXIndicatorTesting.kADXIndicatorTesting(self.stockName, 4)
                 adxTestIndicator.testBackData()
                 adxTestIndicator.dumpTestData()
 

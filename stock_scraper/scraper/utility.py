@@ -61,8 +61,8 @@ csvFileNameOption = "data/NiftyOption"            #append .CSV in function
 csvFileNameWithIndicators = "data/NIFTYIndicator.csv"
 startYear = 2010
 endYear = 2018              # expected year + 1
-testDataDateLower ="01-Jan-2013" # Date from which backward test signal will get genrated
-testDataDateUpper ="31-Dec-2013"
+testDataDateLower ="01-Jan-2010" # Date from which backward test signal will get genrated
+testDataDateUpper ="31-Dec-2018"
 endMonth = "Mar"
 dbStartDate = 20100101      #yyyymmdd
 dbEndDate = 20181231
@@ -70,8 +70,8 @@ startIndex = 30             # How many rows we need to scrape from csv file from
 endIndex = 7                
 timeIntervalBetweenScrape = 60      #in seconds
 thresholdPassFailPer = 75
-TARGET_PIP =            50
-STOPLOSS_PIP =          75
+TARGET_PIP =            100
+STOPLOSS_PIP =          200
 BROKERAGE_PIP =         2
 
 
