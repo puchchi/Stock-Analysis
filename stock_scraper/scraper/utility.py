@@ -46,7 +46,7 @@ MAIL_SENDER =                   "anursin@adobe.com"
 
 
 # Not needed for automatic crawling
-stockName = "EURJPY"      # Option symbol of nifty is "NIFTY", "SBIN", "ICICIBANK", "HDFC", "INFY", "TATASTEEL"
+stockName = "EURUSD"      # Option symbol of nifty is "NIFTY", "SBIN", "ICICIBANK", "HDFC", "INFY", "TATASTEEL"
                             #  "CIPLA", "KOTAKBANK", "HDFCBANK", "AXISBANK", 
 stockList = ["SBIN", "ICICIBANK", "HDFC", "KOTAKBANK", "HDFCBANK", "AXISBANK", "TATASTEEL", "CIPLA", "INFY", "BPCL", "COALINDIA", 
              "NTPC", "POWERGRID", "ONGC", "BAJFINANCE", "INFRATEL", "JSWSTEEL", "TATAMOTORS", "HEROMOTOCO", "SUNPHARMA", "DRREDDY",
