@@ -77,7 +77,8 @@ class kADXIndicatorTesting(kIndicatorTesterClass):
                 tp1 = ltp*(1-TARGET_PRICE_1*0.01)
                 tp2 = ltp*(1-TARGET_PRICE_2*0.01)
                 tp3 = ltp*(1-TARGET_PRICE_3*0.01)
-                sl = ltp(1+STOP_LOSS*0.01)
+                sl = ltp*(1+STOP_LOSS*0.01)
+                
                 subject = "Stock Alert | Date " + str(df.index[lastIndex])
                 content = "Sell signal for " + self.symbol + ". LTP: " + str(close[lastIndex])
                 content += "\n\tTarget prices: " + str(tp1) + ", " + str(tp2) + ", " + str(tp3)
@@ -93,7 +94,7 @@ class kADXIndicatorTesting(kIndicatorTesterClass):
                 tp1 = ltp*(1+TARGET_PRICE_1*0.01)
                 tp2 = ltp*(1+TARGET_PRICE_2*0.01)
                 tp3 = ltp*(1+TARGET_PRICE_3*0.01)
-                sl = ltp(1-STOP_LOSS*0.01)
+                sl = ltp*(1-STOP_LOSS*0.01)
                 subject = "Stock Alert | Date " + str(df.index[lastIndex])
                 content = "Buy signal for " + self.symbol + ". LTP: " + str(close[lastIndex])
                 content += "\n\tTarget prices: " + str(tp1) + ", " + str(tp2) + ", " + str(tp3)

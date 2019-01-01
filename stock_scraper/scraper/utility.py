@@ -17,7 +17,7 @@ DATABASE_PASSWORD = "StockPass"
 MAXVALUE = 999999999999
 
 # defs
-CURRENT_EXPIRY =                ["Nov2018", "Dec2018"]
+CURRENT_EXPIRY =                ["Jan2019", "Feb2019"]
 LIVE_OPTION_TABLENAME =         "LiveOption"
 LIVE_STOCK_TABLENAME =          "LiveStock"                                         # For live equity & live index
 HISTORIC_OPTION_TABLENAME =     "HistoricOption"
@@ -64,9 +64,9 @@ csvFileName = "data/Nifty.csv"
 csvFileNameOption = "data/NiftyOption"            #append .CSV in function
 csvFileNameWithIndicators = "data/NIFTYIndicator.csv"
 startYear = 2010
-endYear = 2018              # expected year + 1
+endYear = 2019              # expected year + 1
 testDataDateLower ="01-Jan-2018" # Date from which backward test signal will get genrated
-testDataDateUpper ="31-Dec-2018"
+testDataDateUpper ="31-Dec-2019"
 endMonth = "Mar"
 dbStartDate = 20180101      #yyyymmdd
 dbEndDate = 20181231
@@ -74,6 +74,12 @@ startIndex = 30             # How many rows we need to scrape from csv file from
 endIndex = 7                
 timeIntervalBetweenScrape = 60      #in seconds
 thresholdPassFailPer = 75
+
+# To get symbol count from NSE, use following url
+# https://www.nseindia.com//marketinfo/sym_map/symbolCount.jsp?symbol=HDFC
+# by default symbolcount is 1, if its other than 1, define here
+SYMBOL_COUNT = {"HDFC":2, 
+    }
 
 
 # Option Data

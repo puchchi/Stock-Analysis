@@ -30,6 +30,7 @@ SCHEDULED_TASK=(
 
     # live equity
     (LiveEquity, [NIFTY_STOCK_LIST, LIVE_STOCK_TABLENAME], ["0900", "1600", 10],),
+    #(LiveEquity, ["HDFC", LIVE_STOCK_TABLENAME], ["0900", "1600", 1],),
 
     # historic option
     #(HistoricOption, ["SBIN", CURRENT_EXPIRY, "OPTSTK", HISTORIC_OPTION_TABLENAME], ["0800"], ),
@@ -37,15 +38,15 @@ SCHEDULED_TASK=(
     #(HistoricOption, ["BankNifty", CURRENT_EXPIRY, "OPTIDX", HISTORIC_OPTION_TABLENAME], ["0800"], ),
 
     # historic Index 
-    (HistoricIndex, ["NIFTY", HISTORIC_START_DATE, CURRENT_DATE, HISTORIC_STOCK_TABLENAME], ["0800"], ),
-    (HistoricIndex, ["BANKNIFTY", HISTORIC_START_DATE, CURRENT_DATE, HISTORIC_STOCK_TABLENAME], ["0800"], ),
+    #(HistoricIndex, ["NIFTY", HISTORIC_START_DATE, CURRENT_DATE, HISTORIC_STOCK_TABLENAME], ["0800"], ),
+    #(HistoricIndex, ["BANKNIFTY", HISTORIC_START_DATE, CURRENT_DATE, HISTORIC_STOCK_TABLENAME], ["0800"], ),
 
     # historic Equity 
     (HistoricEquity, [NIFTY_STOCK_LIST, HISTORIC_START_DATE, CURRENT_DATE, HISTORIC_STOCK_TABLENAME], ["0800"], ),
 
     # Creating CSV for stock(Index/Equity), NOTE: It will create indicator csv too
-    (CreateSpotCSVDataFile, [NIFTY_STOCK_LIST, INDICATOR_START_DATE], ["1500"],),
+    (CreateSpotCSVDataFile, ["HDFC", INDICATOR_START_DATE], ["1500", "1520", 5],),
 
     # Testing ADX indicator for Nifty stocks(true is placeholder arg)
-    (ADXIndicatorTesting, [NIFTY_STOCK_LIST, True], ["1510"],),
+    (ADXIndicatorTesting, ["HDFC", True], ["1510", "1525", 5],),
     )

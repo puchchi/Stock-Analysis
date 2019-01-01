@@ -42,7 +42,7 @@ class kMain:
                 print e
                 print "Exception in __call__ main.py"
 
-            time.sleep(300)
+            time.sleep(60)
 
     def CreateTaskList(self):
         tasks = scheduling.SCHEDULED_TASK

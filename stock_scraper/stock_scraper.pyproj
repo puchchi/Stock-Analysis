@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{084aa35a-8739-4030-aea8-2af3185fda11}</ProjectGuid>
     <ProjectHome />
-    <StartupFile>MainDriver\AddingNewStock.py</StartupFile>
+    <StartupFile>MainDriver\main.py</StartupFile>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <ProjectTypeGuids>{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>

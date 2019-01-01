@@ -14,7 +14,7 @@ from scrapy.loader import ItemLoader
 from scrapy.selector import Selector
 from scrapy.loader.processors import Join, MapCompose
 from scraper.items import kHistoricEquityItem
-
+from scraper import utility
 
 class kHistoricEquitySpider(scrapy.Spider):
     
@@ -37,6 +37,13 @@ class kHistoricEquitySpider(scrapy.Spider):
     def start_requests(self):
         scrapy.Spider.start_requests(self)
 
+        symbolCount = 1
+        try:
+            symbolCount = utility.SYMBOL_COUNT[self.symbol]
+        except Exception:
+            # do nothing
+            symbolCount = 1
+
         endDate = datetime.datetime.now()
         startDate = endDate - datetime.timedelta(days=3)
 
@@ -56,7 +63,7 @@ class kHistoricEquitySpider(scrapy.Spider):
                 tempEndDate = datetime.datetime.now() - datetime.timedelta(days=1)
                 forceBreak = True
 
-            url = "https://www.nseindia.com/products/dynaContent/common/productsSymbolMapping.jsp?symbol=%s&segmentLink=3&symbolCount=1&series=EQ&dateRange=+&fromDate=%s&toDate=%s&dataType=PRICEVOLUMEDELIVERABLE" %(self.symbol.lower(), startDateStr, tempEndDatStr)
+            url = "https://www.nseindia.com/products/dynaContent/common/productsSymbolMapping.jsp?symbol=%s&segmentLink=3&symbolCount=%s&series=EQ&dateRange=+&fromDate=%s&toDate=%s&dataType=PRICEVOLUMEDELIVERABLE" %(self.symbol.lower(), symbolCount, startDateStr, tempEndDatStr)
 
             yield scrapy.Request(url,self.parse, headers={'Referer': 'https://www.nseindia.com/products/content/equities/equities/eq_security.htm'})
 
