@@ -26,6 +26,9 @@ class kIndicatorTesterClass:
         self.sellClosedMissed = 0
         self.totNightHoldingSell = 0
         self.totNightHoldingBuy = 0
+        self.totPip = 0
+        self.lastSignal = ""      # 1 for buy, 2 for sell
+        self.lastPrice = 0
 
         # Creating storage dataframe to store buy/sell calls 
         self.signalTestFile = CSV_SINGAL_DATA_DIRECTORY + "Currency"+ signalName + SIGNAL_TEST_RESULT + CSV_INDICATOR_EXTENSTION
@@ -159,9 +162,22 @@ class kIndicatorTesterClass:
 
             if flag:
                 self.sellClosedMissed+=1
+
         except Exception as e:
             print "Exception in SellSignal IndicatorTesterClass, as noOdDays are less"
             print e
+
+        # calculating total pips earned/lost
+        sellingPrice = self.df["Close"][index]
+        deltaPip = self.lastPrice - sellingPrice
+        if self.lastSignal == "Sell":
+            self.totPip += (-1)*deltaPip
+        if self.lastSignal == "Buy":
+            self.totPip += deltaPip
+
+        self.lastPrice = sellingPrice
+        self.lastSignal = "Sell"
+
        
 
     def sellSignalResult(self):
@@ -184,7 +200,7 @@ class kIndicatorTesterClass:
         print "Total profit pip in selling for threshold pip: " + str(TARGET_PIP) + " is : " + str(self.totSellProfitPip) 
         print "Sell Closed missed: " + str(self.sellClosedMissed)
         print "Total Night holding: " + str(self.totNightHoldingSell)
-
+        print "Total Pip earned: " + str(self.totPip*1000)
 
     def buySignal(self, index):
         date = datetime.strptime(str(self.df.index[index]), "%Y-%m-%d %H:%M:%S")
@@ -283,6 +299,17 @@ class kIndicatorTesterClass:
             print "Exception in BuySignal IndicatorTesterClass, as noOdDays are less"
             print e
 
+        # calculating total pips earned/lost
+        buyPrice = self.df["Close"][index]
+        deltaPip = self.lastPrice - buyPrice
+        if self.lastSignal == "Sell":
+            self.totPip += (+1)*deltaPip
+        if self.lastSignal == "Buy":
+            self.totPip += (-1)*deltaPip
+
+        self.lastPrice = buyPrice
+        self.lastSignal = "Buy"
+
     def buySignalResult(self):
         print "Total buy pass : " + str(self.totBPass)
         print "Total buy fail : " + str(self.totBFail)
@@ -303,7 +330,7 @@ class kIndicatorTesterClass:
         print "Total profit pip in buying for threshold pip: " + str(TARGET_PIP) + " is : " + str(self.totBuyProfitPip) 
         print "Buy Closed missed: " + str(self.buyClosedMissed)
         print "Total Night holding: " + str(self.totNightHoldingBuy)
-
+        print "Total Pip earned: " + str(self.totPip*1000)
 
     def resetValue(self):
         self.totBPass = 0
