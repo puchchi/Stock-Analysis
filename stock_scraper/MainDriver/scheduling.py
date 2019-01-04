@@ -25,8 +25,8 @@ SCHEDULED_TASK=(
     #(LiveOption, ["BankNifty", CURRENT_EXPIRY, "OPTIDX", LIVE_OPTION_TABLENAME], ["0900", "1600", 10], ),
 
     # live index
-    (LiveIndex, ["NIFTY", LIVE_STOCK_TABLENAME], ["0900", "1600", 10],),
-    (LiveIndex, ["BANKNIFTY", LIVE_STOCK_TABLENAME], ["0900", "1600", 10],),
+    #(LiveIndex, ["NIFTY", LIVE_STOCK_TABLENAME], ["0900", "1600", 10],),
+    #(LiveIndex, ["BANKNIFTY", LIVE_STOCK_TABLENAME], ["0900", "1600", 10],),
 
     # live equity
     (LiveEquity, [NIFTY_STOCK_LIST, LIVE_STOCK_TABLENAME], ["0900", "1600", 10],),
@@ -45,7 +45,7 @@ SCHEDULED_TASK=(
     (HistoricEquity, [NIFTY_STOCK_LIST, HISTORIC_START_DATE, CURRENT_DATE, HISTORIC_STOCK_TABLENAME], ["0800"], ),
 
     # Creating CSV for stock(Index/Equity), NOTE: It will create indicator csv too
-    (CreateSpotCSVDataFile, [NIFTY_STOCK_LIST, INDICATOR_START_DATE], ["1500", "1520", 5],),
+    (CreateSpotCSVDataFile, [NIFTY_STOCK_LIST, INDICATOR_START_DATE], ["1500", "1520", 10],),
 
     # Testing ADX indicator for Nifty stocks(true is placeholder arg)
     (ADXIndicatorTesting, [NIFTY_STOCK_LIST, True], ["1510", "1525", 5],),

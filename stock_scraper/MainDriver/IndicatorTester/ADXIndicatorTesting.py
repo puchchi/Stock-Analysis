@@ -15,6 +15,13 @@ class kADXIndicatorTesting(kIndicatorTesterClass):
         self.filename = CSV_DATA_DIRECTORY + symbol + CSV_INDICATOR_EXTENSTION
         kIndicatorTesterClass.__init__(self, self.symbol, "ADX", noOfDays)
         self.noOfDays = noOfDays
+        # creating percentage dataframe
+        self.perPassFailFile = CSV_SINGAL_DATA_DIRECTORY + signalName + "PercentagePassFail" + CSV_INDICATOR_EXTENSTION
+        try:
+            self.perPassFailDF = pd.read_csv(self.perPassFailFile, index_col=0)
+        except Exception as e:
+            print "Exception while reading signal test file"
+            print e
 
     # Use this to test effeciency of this indicator
     def testBackData(self):
@@ -73,6 +80,12 @@ class kADXIndicatorTesting(kIndicatorTesterClass):
 
         if flag:
             if minusDIs[lastIndex] > plusDIs[lastIndex] and adxs[lastIndex] > 20:
+                for i in range(self.perPassFailDF["Symbol"].__len__()):
+                    if self.perPassFailDF["Symbol"][i+1] == self.symbol and str(self.perPassFailDF["Type"][i+1])=="Sell":
+                        if self.perPassFailDF["Normal %"][i+1] < thresholdPassFailPer:
+                            return
+                        else:
+                            break
                 ltp = close[lastIndex]
                 tp1 = ltp*(1-TARGET_PRICE_1*0.01)
                 tp2 = ltp*(1-TARGET_PRICE_2*0.01)
@@ -90,6 +103,13 @@ class kADXIndicatorTesting(kIndicatorTesterClass):
                 print "No Sell signal for " + self.symbol + " on " + str(df.index[lastIndex])
         else:
             if plusDIs[lastIndex] > minusDIs[lastIndex] and adxs[lastIndex] > 20:
+                for i in range(self.perPassFailDF["Symbol"].__len__()):
+                    if self.perPassFailDF["Symbol"][i+1] == self.symbol and str(self.perPassFailDF["Type"][i+1])=="Buy":
+                        if self.perPassFailDF["Normal %"][i+1] < thresholdPassFailPer:
+                            return
+                        else:
+                            break
+
                 ltp = close[lastIndex]
                 tp1 = ltp*(1+TARGET_PRICE_1*0.01)
                 tp2 = ltp*(1+TARGET_PRICE_2*0.01)
