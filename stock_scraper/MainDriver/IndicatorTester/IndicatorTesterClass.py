@@ -141,7 +141,7 @@ class kIndicatorTesterClass:
                     if (high >= stopLoss):
                         self.totSellProfitPip-=STOPLOSS_PIP
 
-                        currentDate = self.df.index[index+1:index+self.noOfDays+1][i]
+                        currentDate = self.df.index[i]
                         buyingDate = self.df.index[index]
                         holdingNight = int((currentDate-buyingDate).days)
                         self.totNightHoldingSell+= holdingNight
@@ -152,7 +152,7 @@ class kIndicatorTesterClass:
                     elif (low <= targetPrice):
                         self.totSellProfitPip+=TARGET_PIP
                 
-                        currentDate = self.df.index[index+1:index+self.noOfDays+1][i]
+                        currentDate = self.df.index[i]
                         buyingDate = self.df.index[index]
                         holdingNight = int((currentDate-buyingDate).days)
                         self.totNightHoldingSell+= holdingNight
@@ -276,7 +276,7 @@ class kIndicatorTesterClass:
                     if (low <= stopLoss):
                         self.totBuyProfitPip-=STOPLOSS_PIP
                     
-                        currentDate = self.df.index[index+1:index+self.noOfDays+1][i]
+                        currentDate = self.df.index[i]
                         buyingDate = self.df.index[index]
                         holdingNight = int((currentDate-buyingDate).days)
                         self.totNightHoldingSell+= holdingNight
@@ -286,7 +286,7 @@ class kIndicatorTesterClass:
                     elif (high >= targetPrice):
                         self.totBuyProfitPip+=TARGET_PIP
 
-                        currentDate = self.df.index[index+1:index+self.noOfDays+1][i]
+                        currentDate = self.df.index[i]
                         buyingDate = self.df.index[index]
                         holdingNight = int((currentDate-buyingDate).days)
                         flag=False

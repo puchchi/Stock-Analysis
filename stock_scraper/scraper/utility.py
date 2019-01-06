@@ -46,7 +46,7 @@ MAIL_SENDER =                   "anursin@adobe.com"
 
 
 # Not needed for automatic crawling
-stockName = "EURUSD"      # Option symbol of nifty is "NIFTY", "SBIN", "ICICIBANK", "HDFC", "INFY", "TATASTEEL"
+stockName = "EURJPY"      # Option symbol of nifty is "NIFTY", "SBIN", "ICICIBANK", "HDFC", "INFY", "TATASTEEL"
                             #  "CIPLA", "KOTAKBANK", "HDFCBANK", "AXISBANK", 
 stockList = ["SBIN", "ICICIBANK", "HDFC", "KOTAKBANK", "HDFCBANK", "AXISBANK", "TATASTEEL", "CIPLA", "INFY", "BPCL", "COALINDIA", 
              "NTPC", "POWERGRID", "ONGC", "BAJFINANCE", "INFRATEL", "JSWSTEEL", "TATAMOTORS", "HEROMOTOCO", "SUNPHARMA", "DRREDDY",
@@ -61,7 +61,7 @@ csvFileNameOption = "data/NiftyOption"            #append .CSV in function
 csvFileNameWithIndicators = "data/NIFTYIndicator.csv"
 startYear = 2010
 endYear = 2018              # expected year + 1
-testDataDateLower ="01-Jan-2018" # Date from which backward test signal will get genrated
+testDataDateLower ="01-Jan-2010" # Date from which backward test signal will get genrated
 testDataDateUpper ="31-Dec-2018"
 endMonth = "Mar"
 dbStartDate = 20100101      #yyyymmdd
@@ -70,8 +70,8 @@ startIndex = 30             # How many rows we need to scrape from csv file from
 endIndex = 7                
 timeIntervalBetweenScrape = 60      #in seconds
 thresholdPassFailPer = 75
-TARGET_PIP =            25
-STOPLOSS_PIP =          100
+TARGET_PIP =            20
+STOPLOSS_PIP =          45
 BROKERAGE_PIP =         2
 
 

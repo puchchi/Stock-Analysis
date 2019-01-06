@@ -14,8 +14,8 @@ class kComputeIndicators:
         self.csvFileNameWithIndicators = CSV_DATA_DIRECTORY + symbol + CSV_INDICATOR_EXTENSTION
 
         try:
-            #parser = lambda date: pd.datetime.strptime(date, '%d.%m.%Y %H:%M:%S.%f')
-            parser = lambda date: pd.datetime.strptime(date, '%Y-%m-%d %H:%M')
+            parser = lambda date: pd.datetime.strptime(date, '%d.%m.%Y %H:%M:%S.%f')
+            #parser = lambda date: pd.datetime.strptime(date, '%Y-%m-%d %H:%M')
             self.df = pd.read_csv(self.csvFileName, parse_dates = [0], date_parser = parser, index_col = "Time")
         
         except Exception as e:
@@ -66,7 +66,7 @@ class kComputeIndicators:
 
         # for eurusd we going to need date b/w 2016-1-1 to 2016-12-31
         #remove this part
-        dataframe = dataframe.loc['2016-01-01':'2016-12-31']
+        #dataframe = dataframe.loc['2016-01-01':'2016-12-31']
 
         # cleaing dataframe for any record which has volume 0
         dataframe= dataframe.replace(0,nan)
