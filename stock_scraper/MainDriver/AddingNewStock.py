@@ -143,10 +143,10 @@ class kAddingNewStock:
 
 if __name__ == "__main__":
 
-    #for stock in utility.stockList:
+    for stock in utility.stockList:
 
-        addingNewStock = kAddingNewStock(utility.stockName)
-        #addingNewStock = kAddingNewStock(stock)
+        #addingNewStock = kAddingNewStock(utility.stockName)
+        addingNewStock = kAddingNewStock(stock)
         # if you want to do all 5 steps, uncomment following line
         #addingNewStock()
 

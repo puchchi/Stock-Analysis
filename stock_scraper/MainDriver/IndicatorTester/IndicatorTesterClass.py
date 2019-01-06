@@ -43,7 +43,7 @@ class kIndicatorTesterClass:
             self.storageDF = pd.DataFrame(columns=columnList)
 
         # creating percentage dataframe
-        self.perPassFailFile = CSV_SINGAL_DATA_DIRECTORY + signalName + "PercentagePassFail" + CSV_INDICATOR_EXTENSTION
+        self.perPassFailFile = CSV_SINGAL_DATA_DIRECTORY + self.signalName + "PercentagePassFail" + CSV_INDICATOR_EXTENSTION
         if path.exists(self.perPassFailFile):
             try:
                 self.perPassFailDF = pd.read_csv(self.perPassFailFile, index_col=0)

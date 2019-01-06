@@ -16,7 +16,7 @@ class kADXIndicatorTesting(kIndicatorTesterClass):
         kIndicatorTesterClass.__init__(self, self.symbol, "ADX", noOfDays)
         self.noOfDays = noOfDays
         # creating percentage dataframe
-        self.perPassFailFile = CSV_SINGAL_DATA_DIRECTORY + signalName + "PercentagePassFail" + CSV_INDICATOR_EXTENSTION
+        self.perPassFailFile = CSV_SINGAL_DATA_DIRECTORY + "ADX" + "PercentagePassFail" + CSV_INDICATOR_EXTENSTION
         try:
             self.perPassFailDF = pd.read_csv(self.perPassFailFile, index_col=0)
         except Exception as e:
