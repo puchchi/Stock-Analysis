@@ -45,8 +45,8 @@ SCHEDULED_TASK=(
     (HistoricEquity, [NIFTY_STOCK_LIST, HISTORIC_START_DATE, CURRENT_DATE, HISTORIC_STOCK_TABLENAME], ["0800"], ),
 
     # Creating CSV for stock(Index/Equity), NOTE: It will create indicator csv too
-    (CreateSpotCSVDataFile, [NIFTY_STOCK_LIST, INDICATOR_START_DATE], ["1500", "1520", 10],),
+    (CreateSpotCSVDataFile, [NIFTY_STOCK_LIST, INDICATOR_START_DATE], ["1200", "1520", 10],),
 
     # Testing ADX indicator for Nifty stocks(true is placeholder arg)
-    (ADXIndicatorTesting, [NIFTY_STOCK_LIST, True], ["1510", "1525", 5],),
+    (ADXIndicatorTesting, [NIFTY_STOCK_LIST, True], ["1200", "1525", 5],),
     )
