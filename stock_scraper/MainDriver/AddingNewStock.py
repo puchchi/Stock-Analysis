@@ -143,18 +143,22 @@ class kAddingNewStock:
 
 if __name__ == "__main__":
 
-    for stock in utility.stockList:
+    try:
+        #for stock in utility.stockList:
+        
+            addingNewStock = kAddingNewStock(utility.stockName)
+            #addingNewStock = kAddingNewStock(stock)
+            # if you want to do all 5 steps, uncomment following line
+            #addingNewStock()
 
-        #addingNewStock = kAddingNewStock(utility.stockName)
-        addingNewStock = kAddingNewStock(stock)
-        # if you want to do all 5 steps, uncomment following line
-        #addingNewStock()
+            #addingNewStock.initializeDb()
+            #addingNewStock.scrapeSpotData()
 
-        #addingNewStock.initializeDb()
-        #addingNewStock.scrapeSpotData()
-        #addingNewStock.createCSVFile()
-        #addingNewStock.createIndicators()
-        addingNewStock.testIndicator()
+            #addingNewStock.createCSVFile()
+            #addingNewStock.createIndicators()
+            addingNewStock.testIndicator()
+    except Exception as e:
+        print e
 
     # Checking for common signal in ADX & MACD
     #testerObj = CommonSignalChecker.kCommonSignalChecker(["ADX", "MACD"])

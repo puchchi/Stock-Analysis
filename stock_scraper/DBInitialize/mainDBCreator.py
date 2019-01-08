@@ -84,7 +84,7 @@ class kMainDBCreator():
             try:
                 # Lets not drop table
                 #self.cursor.execute(dropSQL)
-                continue
+                a = True        # PlaceHolder comment
             except Exception as e:
                 print e
 

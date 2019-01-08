@@ -1,5 +1,12 @@
 # This module contains common function 
 
+# 	TODO before running
+# pip install mysqlclient
+# pip install pandas
+# pip install numpy
+# pip install pypiwin32
+
+
 import MySQLdb, smtplib, datetime
 from os import path
 
@@ -50,13 +57,13 @@ MAIL_SENDER =                   "anursin@adobe.com"
 
 
 # Not needed for automatic crawling
-stockName = "SBIN"      # Option symbol of nifty is "NIFTY", "SBIN", "ICICIBANK", "HDFC", "INFY", "TATASTEEL"
+stockName = "NIFTY"      # Option symbol of nifty is "NIFTY", "SBIN", "ICICIBANK", "HDFC", "INFY", "TATASTEEL"
                             #  "CIPLA", "KOTAKBANK", "HDFCBANK", "AXISBANK", 
 stockList = ["SBIN", "ICICIBANK", "HDFC", "KOTAKBANK", "HDFCBANK", "AXISBANK", "TATASTEEL", "CIPLA", "INFY", "BPCL", "COALINDIA", 
              "NTPC", "POWERGRID", "ONGC", "BAJFINANCE", "INFRATEL", "JSWSTEEL", "TATAMOTORS", "HEROMOTOCO", "SUNPHARMA", "DRREDDY",
              "HCLTECH", "ULTRACEMCO", "HINDUNILVR", "VEDL", "GRASIM", "TECHM","INDUSINDBK", "GAIL","ASIANPAINT", "EICHERMOT",
              "RELIANCE", "BHARTIARTL", "TITAN", "WIPRO", "INFY", "MARUTI", "IBULHSGFIN", "ZEEL", "ADANIPORTS", "UPL", "IOC", "BAJAJFINSV"]
-stockType = "Equity"     # Index or Equity or LiveOption
+stockType = "Index"     # Index or Equity or LiveOption
 dbTableName = HISTORIC_STOCK_TABLENAME + stockName
 dbTableNameOption = HISTORIC_OPTION_TABLENAME + stockName    # Final table name will be OptionValueOfNiftyJan2018
 dbTableNameLiveOption = LIVE_STOCK_TABLENAME + stockName     
