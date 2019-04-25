@@ -32,6 +32,11 @@ class kMain:
             print "Checking at "+ now
 
             try:
+                if dt.now().weekday() == 5 or dt.now().weekday() == 6:  #skipping on sat n sun.
+                    time.sleep(600)
+                    print "Skipping on weekend."
+                    continue
+
                 self.GetEligibleProcess()
                 self.ScheduleNextExecutionTime()
                 self.RunEligibleProcess()

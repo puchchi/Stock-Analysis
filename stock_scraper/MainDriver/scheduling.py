@@ -48,5 +48,5 @@ SCHEDULED_TASK=(
     (CreateSpotCSVDataFile, [NIFTY_STOCK_LIST, INDICATOR_START_DATE], ["1200", "1520", 10],),
 
     # Testing ADX indicator for Nifty stocks(true is placeholder arg)
-    (ADXIndicatorTesting, [NIFTY_STOCK_LIST, True], ["1200", "1525", 5],),
+    (ADXIndicatorTesting, [NIFTY_STOCK_LIST, True], ["1200", "1525", 10],),
     )
